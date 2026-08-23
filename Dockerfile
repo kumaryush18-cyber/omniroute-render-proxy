@@ -10,16 +10,15 @@ RUN mkdir -p /data && chown -R node:node /data || true
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY package*.json pnpm-lock.yaml ./
-# Need to use pnpm for OmniRoute as it's a monorepo
-RUN npm install -g pnpm
-RUN pnpm install
+COPY package*.json ./
+# Use npm to install dependencies
+RUN npm ci
 
 # Copy source code
 COPY . .
 
 # Build the Next.js and API backend
-RUN NODE_OPTIONS=--max-old-space-size=4096 pnpm run build
+RUN NODE_OPTIONS=--max-old-space-size=4096 npm run build
 
 # Use the default node user
 USER node
