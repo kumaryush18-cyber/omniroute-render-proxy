@@ -9,6 +9,9 @@ RUN mkdir -p /data && chown -R node:node /data || true
 
 WORKDIR /app
 
+# Downgrade npm to v10 because npm v11 blocks native install scripts by default (which breaks better-sqlite3)
+RUN npm install -g npm@10
+
 # Copy everything before npm install, so postinstall scripts have all the source code
 COPY . .
 
