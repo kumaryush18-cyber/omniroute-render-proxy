@@ -9,16 +9,12 @@ RUN mkdir -p /data && chown -R node:node /data || true
 
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json ./
-# Use npm to install dependencies (ignoring scripts to avoid missing files in postinstall)
-RUN npm install --legacy-peer-deps --ignore-scripts
-
-# Copy source code
+# Copy everything before npm install, so postinstall scripts have all the source code
 COPY . .
 
-# Run postinstall manually since we ignored it during install
-RUN npm run postinstall
+# Use npm to install dependencies (using legacy-peer-deps due to marked-terminal/react conflicts)
+# This will run the postinstall script successfully, and compile better-sqlite3 native bindings
+RUN npm install --legacy-peer-deps
 
 # Build the Next.js and API backend
 RUN NODE_OPTIONS=--max-old-space-size=4096 npm run build
