@@ -337,12 +337,12 @@
     "xxhash-wasm": "^1.1.0",
     "yazl": "^3.3.1",
     "zod": "^4.4.3",
-    "zustand": "^5.0.15"
+    "zustand": "^5.0.15",
+    "better-sqlite3": "^13.0.2"
   },
   "optionalDependencies": {
     "@atjsh/llmlingua-2": "3.0.0",
     "@huggingface/transformers": "^4.2.0",
-    "better-sqlite3": "^13.0.2",
     "js-tiktoken": "^1.0.20",
     "keytar": "^7.9.0",
     "onnxruntime-node": "1.24.3",
@@ -499,4 +499,4 @@
       "dompurify": "^3.4.13"
     }
   }
-}
+}\n

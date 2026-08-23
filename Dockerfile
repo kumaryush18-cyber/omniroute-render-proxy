@@ -9,15 +9,18 @@ RUN mkdir -p /data && chown -R node:node /data || true
 
 WORKDIR /app
 
-# Downgrade npm to v10 because npm v11 blocks native install scripts by default (which breaks better-sqlite3)
+# Downgrade npm to v10 because npm v11 blocks native install scripts by default
 RUN npm install -g npm@10
 
 # Copy everything before npm install, so postinstall scripts have all the source code
 COPY . .
 
+# Approve scripts for better-sqlite3 since it's an optional dependency that needs to build native bindings
+RUN npm approve-scripts better-sqlite3 || true
+
 # Use npm to install dependencies (using legacy-peer-deps due to marked-terminal/react conflicts)
 # This will run the postinstall script successfully, and compile better-sqlite3 native bindings
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps --foreground-scripts
 
 # Build the Next.js and API backend
 RUN NODE_OPTIONS=--max-old-space-size=4096 npm run build
