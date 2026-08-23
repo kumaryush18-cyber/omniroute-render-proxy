@@ -19,7 +19,7 @@ RUN pnpm install
 COPY . .
 
 # Build the Next.js and API backend
-RUN pnpm run build
+RUN NODE_OPTIONS=--max-old-space-size=4096 pnpm run build
 
 # Use the default node user
 USER node
