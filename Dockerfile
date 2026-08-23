@@ -22,8 +22,8 @@ RUN npm approve-scripts better-sqlite3 || true
 # This will run the postinstall script successfully, and compile better-sqlite3 native bindings
 RUN npm install --legacy-peer-deps --foreground-scripts
 
-# Build the Next.js and API backend
-RUN NODE_OPTIONS=--max-old-space-size=4096 npm run build
+# Build the Next.js and API backend (using Webpack instead of Turbopack to avoid native dependency resolution bugs with better-sqlite3)
+RUN OMNIROUTE_USE_TURBOPACK=0 NODE_OPTIONS=--max-old-space-size=4096 npm run build
 
 # Use the default node user
 USER node
