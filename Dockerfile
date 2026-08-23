@@ -11,11 +11,14 @@ WORKDIR /app
 
 # Copy package files and install dependencies
 COPY package*.json ./
-# Use npm to install dependencies (using legacy-peer-deps due to marked-terminal/react conflicts)
-RUN npm install --legacy-peer-deps
+# Use npm to install dependencies (ignoring scripts to avoid missing files in postinstall)
+RUN npm install --legacy-peer-deps --ignore-scripts
 
 # Copy source code
 COPY . .
+
+# Run postinstall manually since we ignored it during install
+RUN npm run postinstall
 
 # Build the Next.js and API backend
 RUN NODE_OPTIONS=--max-old-space-size=4096 npm run build
