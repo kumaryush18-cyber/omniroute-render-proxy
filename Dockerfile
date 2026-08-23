@@ -23,7 +23,7 @@ RUN npm approve-scripts better-sqlite3 || true
 RUN npm install --legacy-peer-deps --foreground-scripts
 
 # Build the Next.js and API backend (using Webpack instead of Turbopack to avoid native dependency resolution bugs with better-sqlite3)
-RUN OMNIROUTE_USE_TURBOPACK=0 OMNIROUTE_BUILD_MEMORY_MB=12288 NODE_OPTIONS=--max-old-space-size=12288 npm run build
+RUN NEXT_TELEMETRY_DISABLED=1 OMNIROUTE_USE_TURBOPACK=0 OMNIROUTE_BUILD_MEMORY_MB=12288 NODE_OPTIONS=--max-old-space-size=8192 npm run build
 
 # Use the default node user
 USER node
