@@ -89,7 +89,7 @@ function hasEncryptedCredentials(dataDir) {
     // throws during module evaluation and 500s the whole route (#5006). Inside this
     // guarded block, any failure simply returns false (the safe default below).
     const require = createRequire(import.meta.url);
-    const Database = require("better-sqlite3");
+    const Database = /* webpackIgnore: true */ require("better-sqlite3");
     const db = new Database(dbPath, { readonly: true, fileMustExist: true });
     try {
       const row = db

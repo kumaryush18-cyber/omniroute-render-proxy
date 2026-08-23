@@ -224,7 +224,7 @@ async function openBetterSqliteAuditDb(dbPath: string): Promise<AuditDatabase> {
   } else {
     const { createRequire } = await import("node:module");
     const _require = createRequire(import.meta.url);
-    mod = _require("better-sqlite3");
+    mod = /* webpackIgnore: true */ _require("better-sqlite3");
   }
   const Database = ((mod as { default?: unknown })?.default || mod) as unknown as new (
     dbPath: string

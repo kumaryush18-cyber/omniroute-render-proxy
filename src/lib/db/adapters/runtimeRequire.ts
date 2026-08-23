@@ -20,15 +20,15 @@ export function runtimeRequire(specifier: string): unknown {
   if (typeof require === "function") {
     switch (specifier) {
       case "better-sqlite3":
-        return require("better-sqlite3");
+        return /* webpackIgnore: true */ require("better-sqlite3");
       case "node:sqlite":
-        return require("node:sqlite");
+        return /* webpackIgnore: true */ require("node:sqlite");
       case "bun:sqlite":
-        return require("bun:sqlite");
+        return /* webpackIgnore: true */ require("bun:sqlite");
       case "sql.js":
-        return require("sql.js");
+        return /* webpackIgnore: true */ require("sql.js");
       case "sqlite-vec":
-        return require("sqlite-vec");
+        return /* webpackIgnore: true */ require("sqlite-vec");
     }
   }
 

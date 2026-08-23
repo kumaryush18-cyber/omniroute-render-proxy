@@ -12,7 +12,7 @@ async function loadSqlite() {
     }
   }
   try {
-    return { Database: (await import("better-sqlite3")).default, driver: "better-sqlite3" };
+    return { Database: (await import(/* webpackIgnore: true */ "better-sqlite3")).default, driver: "better-sqlite3" };
   } catch (error) {
     return { error };
   }
