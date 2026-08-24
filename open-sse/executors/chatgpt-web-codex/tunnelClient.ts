@@ -1,16 +1,7 @@
 import * as fsNative from "node:fs";
 import { spawn, spawnSync, type ChildProcess } from "node:child_process";
 import { createHash } from "node:crypto";
-import {
-  chmodSync,
-  closeSync,
-  existsSync,
-  mkdirSync,
-  openSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+
 import { basename, join } from "node:path";
 
 import { unzipSync } from "fflate";
@@ -137,7 +128,7 @@ export function acquireTunnelSupervisorLease(): void {
   const path = paths.supervisorLease;
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
-      const fd = openSync(path, "wx", 0o600);
+      const fd = fsNative.openSync(path, "wx", 0o600);
       try {
         const lease: SupervisorLease = {
           version: 1,
@@ -146,7 +137,7 @@ export function acquireTunnelSupervisorLease(): void {
         };
         fsNative.writeFileSync(fd, `${JSON.stringify(lease)}\n`);
       } finally {
-        closeSync(fd);
+        fsNative.closeSync(fd);
       }
       ownsSupervisorLease = true;
       return;
@@ -228,7 +219,7 @@ export async function ensureTunnelClientInstalled(): Promise<string> {
   const entry = Object.entries(files).find(([name]) => basename(name) === executableName);
   if (!entry) throw new Error(`${asset} does not contain ${executableName}`);
   atomicWriteFile(paths.binary, entry[1]);
-  if (process.platform !== "win32") chmodSync(paths.binary, 0o700);
+  if (process.platform !== "win32") fsNative.chmodSync(paths.binary, 0o700);
   const manifest: InstallManifest = {
     version: 1,
     tunnelClientVersion: CHATGPT_WEB_CODEX_TUNNEL_VERSION,

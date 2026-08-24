@@ -1,0 +1,424 @@
+Validate main branch	Set up job	﻿2026-08-24T12:40:21.3198438Z Current runner version: '2.336.0'
+Validate main branch	Set up job	2026-08-24T12:40:21.3224996Z ##[group]Runner Image Provisioner
+Validate main branch	Set up job	2026-08-24T12:40:21.3226342Z Hosted Compute Agent
+Validate main branch	Set up job	2026-08-24T12:40:21.3226983Z Version: 20260729.566
+Validate main branch	Set up job	2026-08-24T12:40:21.3227679Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+Validate main branch	Set up job	2026-08-24T12:40:21.3228549Z Build Date: 2026-07-29T19:17:02Z
+Validate main branch	Set up job	2026-08-24T12:40:21.3229243Z Worker ID: {6673bfbd-6052-42e3-b5bf-6d6ef9eea08e}
+Validate main branch	Set up job	2026-08-24T12:40:21.3230053Z Azure Region: westus3
+Validate main branch	Set up job	2026-08-24T12:40:21.3230654Z ##[endgroup]
+Validate main branch	Set up job	2026-08-24T12:40:21.3232265Z ##[group]Operating System
+Validate main branch	Set up job	2026-08-24T12:40:21.3232994Z Ubuntu
+Validate main branch	Set up job	2026-08-24T12:40:21.3233548Z 24.04.4
+Validate main branch	Set up job	2026-08-24T12:40:21.3234543Z LTS
+Validate main branch	Set up job	2026-08-24T12:40:21.3235433Z ##[endgroup]
+Validate main branch	Set up job	2026-08-24T12:40:21.3236087Z ##[group]Runner Image
+Validate main branch	Set up job	2026-08-24T12:40:21.3236881Z Image: ubuntu-24.04
+Validate main branch	Set up job	2026-08-24T12:40:21.3237466Z Version: 20260816.277.1
+Validate main branch	Set up job	2026-08-24T12:40:21.3238680Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260816.277/images/ubuntu/Ubuntu2404-Readme.md
+Validate main branch	Set up job	2026-08-24T12:40:21.3240485Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260816.277
+Validate main branch	Set up job	2026-08-24T12:40:21.3241654Z ##[endgroup]
+Validate main branch	Set up job	2026-08-24T12:40:21.3242842Z ##[group]GITHUB_TOKEN Permissions
+Validate main branch	Set up job	2026-08-24T12:40:21.3245397Z Contents: read
+Validate main branch	Set up job	2026-08-24T12:40:21.3246098Z Issues: write
+Validate main branch	Set up job	2026-08-24T12:40:21.3246825Z Metadata: read
+Validate main branch	Set up job	2026-08-24T12:40:21.3247398Z ##[endgroup]
+Validate main branch	Set up job	2026-08-24T12:40:21.3249647Z Secret source: Actions
+Validate main branch	Set up job	2026-08-24T12:40:21.3250921Z Prepare workflow directory
+Validate main branch	Set up job	2026-08-24T12:40:21.3725822Z Prepare all required actions
+Validate main branch	Set up job	2026-08-24T12:40:21.3776142Z Getting action download info
+Validate main branch	Set up job	2026-08-24T12:40:21.6915403Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Validate main branch	Set up job	2026-08-24T12:40:21.8228795Z Download action repository 'actions/setup-node@v7' (SHA:820762786026740c76f36085b0efc47a31fe5020)
+Validate main branch	Set up job	2026-08-24T12:40:21.9437922Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+Validate main branch	Set up job	2026-08-24T12:40:22.1309841Z Complete job name: Validate main branch
+Validate main branch	Run actions/checkout@v7	﻿2026-08-24T12:40:22.2118806Z ##[group]Run actions/checkout@v7
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2119794Z with:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2120247Z   ref: main
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2120684Z   fetch-depth: 0
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2121162Z   persist-credentials: false
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2121807Z   repository: kumaryush18-cyber/omniroute-render-proxy
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2126180Z   token: ***
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2126654Z   ssh-strict: true
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2127125Z   ssh-user: git
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2127562Z   clean: true
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2128037Z   sparse-checkout-cone-mode: true
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2128581Z   fetch-tags: false
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2129045Z   show-progress: true
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2129561Z   lfs: false
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2129989Z   submodules: false
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2130455Z   set-safe-directory: true
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2130993Z   allow-unsafe-pr-checkout: false
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2131816Z env:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2132286Z   OMNIROUTE_SKIP_SYSTEM_TRUST: 1
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2133057Z   JWT_SECRET: ci-nightly-secret-with-sufficient-length-for-validation
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2133938Z   API_KEY_SECRET: ci-nightly-api-key-secret-long
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2134594Z   DISABLE_SQLITE_AUTO_BACKUP: true
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.2135354Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3168672Z Syncing repository: kumaryush18-cyber/omniroute-render-proxy
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3171757Z ##[group]Getting Git version info
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3173209Z Working directory is '/home/runner/work/omniroute-render-proxy/omniroute-render-proxy'
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3175427Z [command]/usr/bin/git version
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3240159Z git version 2.55.0
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3263621Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3274941Z Temporarily overriding HOME='/home/runner/work/_temp/83c0f07f-d76a-4eae-b8ea-ba910f5deeda' before making global git config changes
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3277700Z Adding repository directory to the temporary git global config as a safe directory
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3285390Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/omniroute-render-proxy/omniroute-render-proxy
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3347783Z Deleting the contents of '/home/runner/work/omniroute-render-proxy/omniroute-render-proxy'
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.3353507Z ##[group]Determining repository object format
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7061897Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7063304Z ##[group]Initializing the repository
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7072697Z [command]/usr/bin/git init /home/runner/work/omniroute-render-proxy/omniroute-render-proxy
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7191650Z hint: Using 'master' as the name for the initial branch. This default branch name
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7193486Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7195393Z hint: to use in all of your new repositories, which will suppress this warning,
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7196787Z hint: call:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7197532Z hint:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7198476Z hint: 	git config --global init.defaultBranch <name>
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7199644Z hint:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7200675Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7202365Z hint: 'development'. The just-created branch can be renamed via this command:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7203754Z hint:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7204502Z hint: 	git branch -m <name>
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7205574Z hint:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7206718Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7208871Z Initialized empty Git repository in /home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git/
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7212807Z [command]/usr/bin/git remote add origin https://github.com/kumaryush18-cyber/omniroute-render-proxy
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7272042Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7273588Z ##[group]Disabling automatic garbage collection
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7275887Z [command]/usr/bin/git config --local gc.auto 0
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7317501Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7318908Z ##[group]Setting up auth
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7319883Z Removing SSH command configuration
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7324100Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7370286Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7724377Z Removing HTTP extra header
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7730600Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7771694Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.7995001Z Removing includeIf entries pointing to credentials config files
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8000652Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8038670Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8267413Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8376770Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git.path /home/runner/work/_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8416017Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8457386Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8498268Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8535655Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8537400Z ##[group]Fetching the repository
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:22.8542207Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3061526Z From https://github.com/kumaryush18-cyber/omniroute-render-proxy
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3064573Z  * [new branch]      dependabot/docker/node-26-bookworm-slim -> origin/dependabot/docker/node-26-bookworm-slim
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3067837Z  * [new branch]      dependabot/docker/oven/bun-1.4.0-slim -> origin/dependabot/docker/oven/bun-1.4.0-slim
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3070125Z  * [new branch]      dependabot/github_actions/actions/upload-artifact-7 -> origin/dependabot/github_actions/actions/upload-artifact-7
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3073395Z  * [new branch]      dependabot/npm_and_yarn/development-79975b58c2 -> origin/dependabot/npm_and_yarn/development-79975b58c2
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3077269Z  * [new branch]      dependabot/npm_and_yarn/electron/electron-43.4.1 -> origin/dependabot/npm_and_yarn/electron/electron-43.4.1
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3080252Z  * [new branch]      dependabot/npm_and_yarn/production-134bff8199 -> origin/dependabot/npm_and_yarn/production-134bff8199
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3082725Z  * [new branch]      main                -> origin/main
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3084108Z  * [new tag]         radar-export-latest -> radar-export-latest
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3087523Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3088982Z ##[group]Determining the checkout info
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3090311Z [command]/usr/bin/git branch --list --remote origin/main
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3109285Z   origin/main
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3117080Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3120750Z [command]/usr/bin/git sparse-checkout disable
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3180958Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3220829Z ##[group]Checking out the ref
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:25.3224049Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3453354Z Updating files:  95% (12145/12765)
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3526749Z Updating files:  96% (12255/12765)
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3602240Z Updating files:  97% (12383/12765)
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3676078Z Updating files:  98% (12510/12765)
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3749257Z Updating files:  99% (12638/12765)
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3750179Z Updating files: 100% (12765/12765)
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3751161Z Updating files: 100% (12765/12765), done.
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3892376Z Switched to a new branch 'main'
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3898902Z branch 'main' set up to track 'origin/main'.
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3922912Z ##[endgroup]
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.3978151Z [command]/usr/bin/git log -1 --format=%H
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4010764Z 98dbef74ee41d708446ab8024b7213b1f9df5fc7
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4020848Z ##[group]Removing auth
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4021308Z Removing SSH command configuration
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4024897Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4063978Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4314260Z Removing HTTP extra header
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4318338Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4358418Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4607619Z Removing includeIf entries pointing to credentials config files
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4611387Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4648333Z includeif.gitdir:/home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git.path
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4649444Z includeif.gitdir:/home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git/worktrees/*.path
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4650170Z includeif.gitdir:/github/workspace/.git.path
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4650840Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4657745Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git.path
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4689862Z /home/runner/work/_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4700922Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-264fed3f\-465c\-44c8\-bbf2\-2a5707aa6042\.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4740044Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git/worktrees/*.path
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4769024Z /home/runner/work/_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4781389Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/omniroute-render-proxy/omniroute-render-proxy/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-264fed3f\-465c\-44c8\-bbf2\-2a5707aa6042\.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4825931Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4855351Z /github/runner_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4863438Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-264fed3f\-465c\-44c8\-bbf2\-2a5707aa6042\.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4907415Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4934968Z /github/runner_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4943819Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-264fed3f\-465c\-44c8\-bbf2\-2a5707aa6042\.config
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.4983426Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.5236199Z Removing credentials config '/home/runner/work/_temp/git-credentials-264fed3f-465c-44c8-bbf2-2a5707aa6042.config'
+Validate main branch	Run actions/checkout@v7	2026-08-24T12:40:26.5244149Z ##[endgroup]
+Validate main branch	Run actions/setup-node@v7	﻿2026-08-24T12:40:26.5564828Z ##[group]Run actions/setup-node@v7
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5565474Z with:
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5565764Z   node-version: 24
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5566062Z   cache: npm
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5566349Z   check-latest: false
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5569092Z   token: ***
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5569407Z   package-manager-cache: true
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5569752Z env:
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5570042Z   OMNIROUTE_SKIP_SYSTEM_TRUST: 1
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5570526Z   JWT_SECRET: ci-nightly-secret-with-sufficient-length-for-validation
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5571077Z   API_KEY_SECRET: ci-nightly-api-key-secret-long
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5571509Z   DISABLE_SQLITE_AUTO_BACKUP: true
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.5571857Z ##[endgroup]
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.6867142Z Found in cache @ /opt/hostedtoolcache/node/24.19.0/x64
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:26.6869957Z ##[group]Environment details
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:28.6681798Z node: v24.19.0
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:28.6682551Z npm: 11.17.0
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:28.6682944Z yarn: 1.22.22
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:28.6684010Z ##[endgroup]
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:28.6703900Z [command]/opt/hostedtoolcache/node/24.19.0/x64/bin/npm config get cache
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:28.8904532Z /home/runner/.npm
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:29.1171343Z Cache hit for: node-cache-Linux-x64-npm-8a61838c848cb778e1b0c567ecf97e97e1f0e098012a4c5b6dd49446a7d32c01
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:30.2454144Z Received 7505338 of 7505338 (100.0%), 7.9 MBs/sec
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:30.2454858Z Cache Size: ~7 MB (7505338 B)
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:30.2494278Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f0a93156-99d2-4887-b98b-8dd897895764/cache.tzst -P -C /home/runner/work/omniroute-render-proxy/omniroute-render-proxy --use-compress-program unzstd
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:30.3670206Z Cache restored successfully
+Validate main branch	Run actions/setup-node@v7	2026-08-24T12:40:30.3681101Z Cache restored from key: node-cache-Linux-x64-npm-8a61838c848cb778e1b0c567ecf97e97e1f0e098012a4c5b6dd49446a7d32c01
+Validate main branch	Run ./.github/actions/npm-ci-retry	﻿2026-08-24T12:40:30.3894818Z Prepare all required actions
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.3932376Z ##[group]Run ./.github/actions/npm-ci-retry
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.3932694Z env:
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.3932910Z   OMNIROUTE_SKIP_SYSTEM_TRUST: 1
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.3933305Z   JWT_SECRET: ci-nightly-secret-with-sufficient-length-for-validation
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.3933749Z   API_KEY_SECRET: ci-nightly-api-key-secret-long
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.3934085Z   DISABLE_SQLITE_AUTO_BACKUP: true
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.3934344Z ##[endgroup]
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.3989307Z ##[start-action display=Run set -euo pipefail;id=__self.__run]
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4025792Z ##[group]Run set -euo pipefail
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4026207Z [36;1mset -euo pipefail[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4026455Z [36;1m[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4026656Z [36;1mmax_attempts=3[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4026897Z [36;1mdelay_seconds=20[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4027127Z [36;1m[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4027381Z [36;1mfor attempt in $(seq 1 "$max_attempts"); do[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4027711Z [36;1m  if [ "$attempt" -gt 1 ]; then[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4028170Z [36;1m    echo "npm ci attempt $attempt/$max_attempts after transient failure"[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4028572Z [36;1m  fi[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4028766Z [36;1m[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4028964Z [36;1m  if npm ci; then[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4029194Z [36;1m    exit 0[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4029401Z [36;1m  fi[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4029606Z [36;1m[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4029801Z [36;1m  exit_code=$?[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4030071Z [36;1m  if [ "$attempt" -eq "$max_attempts" ]; then[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4030383Z [36;1m    exit "$exit_code"[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4030619Z [36;1m  fi[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4030814Z [36;1m[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4031008Z [36;1m  sleep "$delay_seconds"[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4031290Z [36;1m  delay_seconds=$((delay_seconds * 2))[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4031570Z [36;1mdone[0m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4087899Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4088272Z env:
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4088506Z   OMNIROUTE_SKIP_SYSTEM_TRUST: 1
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4088900Z   JWT_SECRET: ci-nightly-secret-with-sufficient-length-for-validation
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4089357Z   API_KEY_SECRET: ci-nightly-api-key-secret-long
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4089686Z   DISABLE_SQLITE_AUTO_BACKUP: true
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:30.4089944Z ##[endgroup]
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:42.0944948Z npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:45.5849938Z npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:40:49.3866185Z npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:41:05.2933524Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:41:05.5394770Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:41:05.6167013Z npm warn deprecated glob@11.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.5773678Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.5796433Z > omniroute@3.8.50 postinstall
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.5797121Z > node scripts/build/postinstall.mjs
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.5797482Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.6708748Z   ✅ Patched playwright-core for Android: /home/runner/work/omniroute-render-proxy/omniroute-render-proxy/node_modules/playwright-core/lib/coreBundle.js
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.6712839Z   ✅ playwright-core Android patch applied (1 file(s))
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.6713303Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.6836955Z   ✅ sql.js copied to standalone dist/node_modules.
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.6849285Z   ✅ node-machine-id copied to standalone dist/node_modules.
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8701190Z   ✅ Co-located 4 LLMLingua SLM optional package(s) into standalone node_modules.
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8701942Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8794577Z [sync-env] ✨ JWT_SECRET auto-generated
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8797919Z [sync-env] ✨ API_KEY_SECRET auto-generated
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8805817Z [sync-env] ✨ Created .env from .env.example (47 keys, 2 secrets generated)
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8861327Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8861921Z > omniroute@3.8.50 prepare
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8862616Z > husky
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:10.8862988Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1939922Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1940803Z added 2447 packages, and audited 2450 packages in 2m
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1941290Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1942041Z 549 packages are looking for funding
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1943024Z   run `npm fund` for details
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1963065Z 
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1963721Z found 0 vulnerabilities
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1984420Z npm warn allow-scripts 7 packages have install scripts not yet covered by allowScripts:
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1986135Z npm warn allow-scripts   @playwright/browser-chromium@1.61.1 (install: node install.js)
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1992114Z npm warn allow-scripts   bun@1.3.14 (postinstall: node install.js)
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1993302Z npm warn allow-scripts   koffi@2.16.1 (install: node src/cnoke/cnoke.js -P . -D src/koffi --prebuild)
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1994651Z npm warn allow-scripts   libxmljs2@0.37.0 (install: prebuild-install || node-gyp rebuild)
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1996176Z npm warn allow-scripts   onnxruntime-node@1.24.3 (postinstall: node ./script/install)
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1997379Z npm warn allow-scripts   opencode-ai@1.18.18 (postinstall: node ./postinstall.mjs)
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1998624Z npm warn allow-scripts   tls-client-node@0.2.0 (postinstall: node ./scripts/postinstall.js)
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.1999515Z npm warn allow-scripts
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.2000707Z npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+Validate main branch	Run ./.github/actions/npm-ci-retry	2026-08-24T12:42:14.3503369Z ##[end-action id=__self.__run;outcome=success;conclusion=success;duration_ms=103951]
+Validate main branch	Main-green validation	﻿2026-08-24T12:42:14.3541041Z ##[group]Run set +e
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3541319Z [36;1mset +e[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3541766Z [36;1m# push (a merge into main) → --quick fast HARD gates; schedule/dispatch → full sweep.[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3542249Z [36;1mif [ "$EVENT_NAME" = "push" ]; then[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3542537Z [36;1m  MODE="--quick"[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3542765Z [36;1melse[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3542986Z [36;1m  MODE="--with-build --full-ci"[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3543252Z [36;1mfi[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3543508Z [36;1mecho "[main-green] mode: $MODE (event: $EVENT_NAME)"[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3543965Z [36;1m# MODE is an intentional flag list, so word-splitting is wanted here[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3544361Z [36;1m# shellcheck disable=SC2086[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3544778Z [36;1mnode scripts/quality/validate-release-green.mjs --json --hermetic $MODE \[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3545552Z [36;1m  1> main-green.json 2> main-green.log[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3546089Z [36;1mecho "exit=$?" >> "$GITHUB_OUTPUT"[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3546416Z [36;1mecho "------- report -------"[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3546852Z [36;1mcat main-green.log[0m
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3588615Z shell: /usr/bin/bash -e {0}
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3588871Z env:
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3589077Z   OMNIROUTE_SKIP_SYSTEM_TRUST: 1
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3589455Z   JWT_SECRET: ci-nightly-secret-with-sufficient-length-for-validation
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3589915Z   API_KEY_SECRET: ci-nightly-api-key-secret-long
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3590241Z   DISABLE_SQLITE_AUTO_BACKUP: true
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3590493Z   EVENT_NAME: push
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3590700Z ##[endgroup]
+Validate main branch	Main-green validation	2026-08-24T12:42:14.3654489Z [main-green] mode: --quick (event: push)
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5287494Z ------- report -------
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5297562Z 🔎 Release-green validation (current working tree)
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5300614Z 
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5301241Z ▶ Typecheck (core)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5301805Z ✅ [hard] Typecheck (core) — pass
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5302459Z ▶ ESLint (errors + warnings — ~5-15min)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5302876Z ❌ [hard] ESLint errors — 21 error(s)
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5303316Z ✅ [drift] ESLint warnings (ratchet) — 0 vs baseline 0
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5303704Z ▶ DB rules…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5303958Z ✅ [hard] DB rules — pass
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5304232Z ▶ Public creds…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5304502Z ✅ [hard] Public creds — pass
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5304918Z ▶ Complexity + cognitive ratchets (shared ESLint walk)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5305782Z ✅ [drift] Cognitive complexity (ratchet) — 1191 vs baseline 1223
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5306455Z ✅ [drift] Cyclomatic complexity (ratchet) — complexity=2636 (shared walk with cognitive)
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5307016Z ✅ [drift] File-size ratchet — within frozen caps
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5307368Z ▶ Dead-code (ratchet)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5307729Z ✅ [drift] Dead-code (ratchet) — within baseline
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5308090Z ▶ Type coverage (ratchet)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5308471Z ✅ [drift] Type coverage (ratchet) — within baseline
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5308908Z ▶ Compression budget (ratchet)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5309341Z ✅ [drift] Compression budget (ratchet) — within baseline
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5309755Z ▶ OpenAPI route coverage (ratchet)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5310199Z ✅ [drift] OpenAPI route coverage (ratchet) — within baseline
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5310618Z ▶ Workflow lint (zizmor ratchet)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5311048Z ✅ [drift] Workflow lint (zizmor ratchet) — within baseline
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5311434Z ▶ CodeQL alerts (ratchet)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5311807Z ✅ [drift] CodeQL alerts (ratchet) — within baseline
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5312215Z ▶ Docs sync + fabricated-docs (strict)…
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5312793Z ✅ [hard] Docs sync + fabricated-docs (strict) — pass
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5313020Z 
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5313180Z ──────── verdict ────────
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5313524Z HARD failures (block — real defects): 1
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5313879Z   ❌ ESLint errors: 21 error(s)
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5314310Z Ratchet drift (non-blocking — rebaseline at release): 0
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5314818Z 
+Validate main branch	Main-green validation	2026-08-24T12:46:25.5315579Z ❌ NOT release-green — hard failures must be fixed (in the originating PR branch, via co-authorship).
+Validate main branch	Open / update tracking issue on HARD failure	﻿2026-08-24T12:46:25.5408960Z ##[group]Run set -euo pipefail
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5409300Z [36;1mset -euo pipefail[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5409562Z [36;1mTITLE="🔴 main branch not green"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5409838Z [36;1m{[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5410156Z [36;1m  echo "The **main-green** validation found HARD failures on \`main\`."[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5410548Z [36;1m  echo ""[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5410927Z [36;1m  echo "Because \`main\` only receives merged work at the release squash, a gate/infra"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5411526Z [36;1m  echo "fix that landed only on the release branch leaves \`main\` broken for the whole"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5412133Z [36;1m  echo "cycle — and repo-wide gates (CodeQL alert count, ratchet baselines) then turn"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5412730Z [36;1m  echo "**every open PR into main** red on a check unrelated to its diff. The fix is a"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5413449Z [36;1m  echo "companion PR \`--base main\` carrying the release-side fix (see"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5413996Z [36;1m  echo "\`_shared/merge-gates.md\` §8), NOT chasing each contributor PR."[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5414423Z [36;1m  echo ""[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5414684Z [36;1m  echo "**Run:** ${RUN_URL} (mode: ${EVENT_NAME})"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5414989Z [36;1m  echo ""[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5415495Z [36;1m  echo '```'[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5415873Z [36;1m  sed -n '/──────── verdict ────────/,$p' main-green.log || tail -40 main-green.log[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5416292Z [36;1m  echo '```'[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5416538Z [36;1m  echo ""[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5417111Z [36;1m  echo "_Ratchet drift (eslint warnings / cognitive-complexity / file-size) is expected mid-cycle and did NOT, on its own, open this issue._"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5417751Z [36;1m} > issue-body.md[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5417988Z [36;1m[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5418295Z [36;1mEXISTING=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open \[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5418847Z [36;1m  --search "in:title $TITLE" --json number --jq '.[0].number' 2>/dev/null || echo "")[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5419292Z [36;1mif [ -n "$EXISTING" ]; then[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5419717Z [36;1m  gh issue comment "$EXISTING" --repo "$GITHUB_REPOSITORY" --body-file issue-body.md[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5420190Z [36;1m  echo "Updated existing issue #$EXISTING"[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5420490Z [36;1melse[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5420918Z [36;1m  gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --label base-red --body-file issue-body.md[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5421413Z [36;1mfi[0m
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5458486Z shell: /usr/bin/bash -e {0}
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5458767Z env:
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5459026Z   OMNIROUTE_SKIP_SYSTEM_TRUST: 1
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5459423Z   JWT_SECRET: ci-nightly-secret-with-sufficient-length-for-validation
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5459873Z   API_KEY_SECRET: ci-nightly-api-key-secret-long
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5460192Z   DISABLE_SQLITE_AUTO_BACKUP: true
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5462698Z   GH_TOKEN: ***
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5463118Z   RUN_URL: https://github.com/kumaryush18-cyber/omniroute-render-proxy/actions/runs/32728325020
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5463600Z   EVENT_NAME: push
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:25.5463808Z ##[endgroup]
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:26.9451022Z could not add label: 'base-red' not found
+Validate main branch	Open / update tracking issue on HARD failure	2026-08-24T12:46:26.9486117Z ##[error]Process completed with exit code 1.
+Validate main branch	Upload report artifact	﻿2026-08-24T12:46:26.9554087Z ##[group]Run actions/upload-artifact@v7
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9554395Z with:
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9554607Z   name: main-green-report
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9554864Z   path: main-green.json
+Validate main branch	Upload report artifact	main-green.log
+Validate main branch	Upload report artifact	
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9555668Z   if-no-files-found: ignore
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9555920Z   compression-level: 6
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9556146Z   overwrite: false
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9556359Z   include-hidden-files: false
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9556611Z   archive: true
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9556801Z env:
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9557001Z   OMNIROUTE_SKIP_SYSTEM_TRUST: 1
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9557366Z   JWT_SECRET: ci-nightly-secret-with-sufficient-length-for-validation
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9557806Z   API_KEY_SECRET: ci-nightly-api-key-secret-long
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9558117Z   DISABLE_SQLITE_AUTO_BACKUP: true
+Validate main branch	Upload report artifact	2026-08-24T12:46:26.9558370Z ##[endgroup]
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.1026777Z Multiple search paths detected. Calculating the least common ancestor of all paths
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.1029085Z The least common ancestor is /home/runner/work/omniroute-render-proxy/omniroute-render-proxy. This will be the root directory of the artifact
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.1030548Z With the provided path, there will be 2 files uploaded
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.1031407Z Artifact name is valid!
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.1031882Z Root directory input is valid!
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.4404112Z Uploading artifact: main-green-report.zip
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.4450239Z Beginning upload of artifact content to blob storage
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.7012428Z Uploaded bytes 1237
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.7628552Z Finished uploading artifact content to blob storage!
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.7629995Z SHA256 digest of uploaded artifact is 5984504306c03200bd89d38891e55fea4399862737489af7dfdd6f675895f035
+Validate main branch	Upload report artifact	2026-08-24T12:46:27.7631117Z Finalizing artifact upload
+Validate main branch	Upload report artifact	2026-08-24T12:46:28.0926491Z Artifact main-green-report successfully finalized. Artifact ID 9520584645
+Validate main branch	Upload report artifact	2026-08-24T12:46:28.0927865Z Artifact main-green-report has been successfully uploaded! Final size is 1237 bytes. Artifact ID is 9520584645
+Validate main branch	Upload report artifact	2026-08-24T12:46:28.0930923Z Artifact download URL: https://github.com/kumaryush18-cyber/omniroute-render-proxy/actions/runs/32728325020/artifacts/9520584645
+Validate main branch	Post Run actions/checkout@v7	﻿2026-08-24T12:46:28.1106040Z Post job cleanup.
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.1944063Z [command]/usr/bin/git version
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.1988794Z git version 2.55.0
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2059905Z Temporarily overriding HOME='/home/runner/work/_temp/b000835c-4b6c-4e3e-b231-63bb81014195' before making global git config changes
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2061460Z Adding repository directory to the temporary git global config as a safe directory
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2077147Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/omniroute-render-proxy/omniroute-render-proxy
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2113183Z Removing SSH command configuration
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2121184Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2171768Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2436958Z Removing HTTP extra header
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2443456Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2495873Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2777658Z Removing includeIf entries pointing to credentials config files
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2786103Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Validate main branch	Post Run actions/checkout@v7	2026-08-24T12:46:28.2833138Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Validate main branch	Complete job	﻿2026-08-24T12:46:28.3249131Z Cleaning up orphan processes

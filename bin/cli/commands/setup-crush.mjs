@@ -8,7 +8,7 @@ import * as fsNative from "node:fs";
  * secret stays out of the file. Remote-aware; curated catalog models.
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+
 import { join } from "node:path";
 import os from "node:os";
 import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";

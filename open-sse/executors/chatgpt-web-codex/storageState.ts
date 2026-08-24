@@ -1,7 +1,7 @@
 import * as fsNative from "node:fs";
 
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, rmSync } from "node:fs";
+
 import { join } from "node:path";
 
 import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";

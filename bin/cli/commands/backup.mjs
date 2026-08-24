@@ -1,16 +1,5 @@
 import * as fsNative from "node:fs";
-import {
-  copyFileSync,
-  createReadStream,
-  createWriteStream,
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  statSync,
-  unlinkSync,
-  writeFileSync,
-} from "node:fs";
+
 import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
 import { dirname, join, extname, basename } from "node:path";
 import { Readable } from "node:stream";

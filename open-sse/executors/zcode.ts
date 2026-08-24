@@ -1,6 +1,6 @@
 import * as fsNative from "node:fs";
 import { randomUUID } from "node:crypto";
-import { existsSync } from "node:fs";
+
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
 import { ZCODE_MODELS } from "../config/providers/registry/zcode/index.ts";
