@@ -11,7 +11,7 @@
  *  - Map file basename → SkillArea family via FAMILY_MAP
  */
 
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import type { SkillArea } from "./types";
 

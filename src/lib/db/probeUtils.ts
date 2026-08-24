@@ -5,7 +5,7 @@
  * should be retried with backoff instead of immediately renaming the DB away
  * and creating an empty one (data loss under concurrent load, #9541).
  */
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 
 /**

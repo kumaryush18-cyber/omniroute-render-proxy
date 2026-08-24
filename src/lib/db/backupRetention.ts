@@ -14,7 +14,7 @@
  * without bound (observed: 48.999 files / 204 GB against a 5,3 MB live database).
  */
 
-import fs from "fs";
+import * as fs from "fs";
 import path from "path";
 
 export const MAX_DB_BACKUPS = 20;

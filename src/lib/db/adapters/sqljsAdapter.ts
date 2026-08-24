@@ -1,5 +1,5 @@
 // src/lib/db/adapters/sqljsAdapter.ts
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import type { SqliteAdapter, PreparedStatement, RunResult } from "./types";
 

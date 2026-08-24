@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import path from "path";
 import os from "os";
 import * as yaml from "js-yaml";

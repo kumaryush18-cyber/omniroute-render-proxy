@@ -9,7 +9,7 @@
  * (Hard Rules #15 + #17): a tunneled JWT cannot reach the start/stop routes.
  */
 
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import { DATA_DIR } from "@/lib/db/core";

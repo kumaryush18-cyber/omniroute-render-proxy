@@ -5,7 +5,7 @@
  * Do NOT import this from UI components directly — use the REST API instead.
  */
 
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import type { AgentSkill, SkillCoverage, SkillMarkdown } from "./types";
 import {

@@ -1,4 +1,5 @@
-import fs from "fs/promises";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import fsSync from "fs";
 import path from "path";
 import os from "os";

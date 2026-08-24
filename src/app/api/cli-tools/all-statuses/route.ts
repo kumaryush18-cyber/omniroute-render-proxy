@@ -1,7 +1,8 @@
 "use server";
 
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import pino from "pino";
 
 import { buildErrorBody } from "@omniroute/open-sse/utils/error.ts";

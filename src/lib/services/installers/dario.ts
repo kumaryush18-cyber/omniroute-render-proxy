@@ -18,7 +18,7 @@
  * DB row:           version_manager WHERE tool = 'dario'
  */
 
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import { DATA_DIR } from "@/lib/db/core";
 import { upsertVersionManagerTool } from "@/lib/db/versionManager";

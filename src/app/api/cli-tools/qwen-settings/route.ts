@@ -1,6 +1,7 @@
 "use server";
 
-import fs from "node:fs/promises";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import path from "node:path";
 import pino from "pino";
 import { NextResponse } from "next/server";

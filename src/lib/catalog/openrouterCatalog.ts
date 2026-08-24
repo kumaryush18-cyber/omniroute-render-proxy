@@ -7,7 +7,7 @@
  * - Atualização oportunista em background (não bloqueia o caller)
  */
 
-import fs from "fs";
+import * as fs from "fs";
 import path from "path";
 import { invalidateModelCatalogCache } from "@/lib/db/readCache";
 

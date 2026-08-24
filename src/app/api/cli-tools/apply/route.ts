@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireCliToolsAuth } from "@/lib/api/requireCliToolsAuth";
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import { generateConfig } from "@/lib/cli-helper/config-generator";
 import { guardCliConfigWrite } from "@/lib/api/cliConfigWriteGuard";

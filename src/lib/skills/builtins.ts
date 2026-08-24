@@ -5,7 +5,8 @@ import { resolveDataDir } from "@/lib/dataPaths";
 import { safeOutboundFetch } from "@/shared/network/safeOutboundFetch";
 import { sandboxRunner, type SandboxConfig } from "./sandbox";
 import { createHash } from "crypto";
-import fs from "fs/promises";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import path from "path";
 
 const MAX_FILE_BYTES = Number.parseInt(process.env.SKILLS_MAX_FILE_BYTES || "", 10) || 1_048_576;

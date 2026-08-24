@@ -1,7 +1,8 @@
 import { spawn, execFile } from "child_process";
 import { createHash } from "crypto";
 import { promisify } from "util";
-import fs from "fs/promises";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import fsSync from "fs";
 import path from "path";
 import proxyFetch from "@omniroute/open-sse/utils/proxyFetch.ts";

@@ -25,7 +25,7 @@
  * schema is required.
  */
 
-import fs from "fs";
+import * as fs from "fs";
 import path from "path";
 
 /** Env var holding `namespace=dir` entries separated by `path.delimiter`. */

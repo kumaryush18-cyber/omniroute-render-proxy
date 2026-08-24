@@ -14,7 +14,7 @@
  *  - F9 is responsible for running apply; F3 only implements + tests the generator.
  */
 
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import { getCatalog, refreshCatalog } from "./catalog";
 import { parseOpenapi } from "./openapiParser";

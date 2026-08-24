@@ -6,7 +6,7 @@
  * behavior change: callLogs.ts re-exports these symbols so existing importers are unaffected.
  */
 
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import { getDbInstance } from "../db/core";
 import {

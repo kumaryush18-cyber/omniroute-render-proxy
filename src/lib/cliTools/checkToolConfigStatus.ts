@@ -1,6 +1,7 @@
 // DRY: shared between /api/cli-tools/status and /api/cli-tools/all-statuses (plan 14 F2)
 
-import fs from "fs/promises";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import { getCliConfigHome, getCliPrimaryConfigPath } from "@/shared/services/cliRuntime";
 import { hasOmniRouteQwenCodeConfig } from "@/shared/services/qwenCodeConfig";
 import {

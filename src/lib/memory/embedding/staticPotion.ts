@@ -6,7 +6,8 @@
  * Singleton: matrix + vocab cached in module memory after first load.
  */
 
-import fs from "node:fs/promises";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import path from "node:path";
 import os from "node:os";
 import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";

@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
-import fs from "node:fs/promises";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import path from "node:path";
 
 const DEFAULT_ALLOWED_EXTENSIONS = new Set([

@@ -8,7 +8,7 @@
  * @module lib/usage/migrations
  */
 
-import fs from "fs";
+import * as fs from "fs";
 import path from "path";
 import { ZipFile } from "yazl";
 import { getDbInstance, isCloud, isBuildPhase, DATA_DIR } from "../db/core";

@@ -7,7 +7,7 @@
  * usable as a standalone script/CI tool (D15).
  */
 
-import fs from "node:fs";
+import * as fs from "node:fs";
 import path from "node:path";
 import * as yaml from "js-yaml";
 import type { SkillArea } from "./types";

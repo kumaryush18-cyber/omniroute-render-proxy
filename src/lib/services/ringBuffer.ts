@@ -1,6 +1,6 @@
 /** In-memory ring buffer for service log lines with optional file flush. */
 
-import fs from "node:fs";
+import * as fs from "node:fs";
 import type { LogLine } from "./types";
 
 const DEFAULT_MAX_BYTES = 5_242_880; // 5 MB

@@ -14,7 +14,7 @@
  * - Migration name mismatch warning (detects renumbering issues)
  */
 
-import fs from "fs";
+import * as fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import type { SqliteAdapter } from "./adapters/types";

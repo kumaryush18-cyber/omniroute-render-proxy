@@ -1,4 +1,5 @@
-import fs from "fs/promises";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import path from "path";
 import { getCachedProviderConnectionById } from "@/lib/localDb";
 import { createBackup } from "@/shared/services/backupService";

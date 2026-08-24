@@ -1,6 +1,7 @@
 import { execFile, spawn } from "child_process";
-import fs from "fs";
-import fsPromises from "fs/promises";
+import * as fs from "fs";
+import * as fsNative from "fs";
+const fsPromises = fsNative.promises;
 import os from "os";
 import path from "path";
 import { promisify } from "util";

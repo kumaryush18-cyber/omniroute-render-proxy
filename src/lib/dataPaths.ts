@@ -1,6 +1,6 @@
 import path from "path";
 import os from "os";
-import fs from "fs";
+import * as fs from "fs";
 
 export const APP_NAME = "omniroute";
 

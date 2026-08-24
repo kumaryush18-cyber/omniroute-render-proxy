@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import fs from "fs";
+import * as fs from "fs";
 import { hostname, release } from "os";
 import path from "path";
 import {
