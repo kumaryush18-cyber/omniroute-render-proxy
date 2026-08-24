@@ -1,19 +1,12 @@
 import * as fsNative from "node:fs";
-// import { randomUUID } from "node:crypto";
-import * as fsNative from "node:fs";
-// import { existsSync } from "node:fs";
-import * as fsNative from "node:fs";
-// import { homedir } from "node:os";
-import * as fsNative from "node:fs";
-// import { join, resolve } from "node:path";
-import * as fsNative from "node:fs";
-// import { ZCODE_MODELS } from "../config/providers/registry/zcode/index.ts";
-import * as fsNative from "node:fs";
-// import { BaseExecutor, type ExecuteInput, type ExecutorExecuteResult, type ProviderCredentials } from "./base.ts";
-import * as fsNative from "node:fs";
-// import { ZcodeAppServerClient, type ZcodeClientLike } from "./zcodeProtocol.ts";
-import * as fsNative from "node:fs";
-// import { buildErrorBody, errorResponse, sanitizeErrorMessage } from "../utils/error.ts";
+import { randomUUID } from "node:crypto";
+import { existsSync } from "node:fs";
+import { homedir } from "node:os";
+import { join, resolve } from "node:path";
+import { ZCODE_MODELS } from "../config/providers/registry/zcode/index.ts";
+import { BaseExecutor, type ExecuteInput, type ExecutorExecuteResult, type ProviderCredentials } from "./base.ts";
+import { ZcodeAppServerClient, type ZcodeClientLike } from "./zcodeProtocol.ts";
+import { buildErrorBody, errorResponse, sanitizeErrorMessage } from "../utils/error.ts";
 
 const ZCODE_URL = "zcode://app-server/stdio";
 const DEFAULT_PROVIDER_ID = "builtin:zai-coding-plan";
@@ -77,7 +70,7 @@ export function resolveZcodeModel(model: unknown): ZcodeModelResolution {
   const requested = typeof model === "string" ? model.trim() : "";
   if (!requested) return { ok: true, model: DEFAULT_ZCODE_MODEL };
   if (requested.startsWith("-")) {
-    return { ok: false, error: `Invalid ZCode model \"${requested}\": model must not start with \"-\".` };
+    return { ok: false, error: \`Invalid ZCode model \"\${requested}\": model must not start with \"-\".\` };
   }
   const normalized = requested.startsWith("zcode/")
     ? requested.slice("zcode/".length)
@@ -85,7 +78,7 @@ export function resolveZcodeModel(model: unknown): ZcodeModelResolution {
   if (!ZCODE_MODEL_ALLOWLIST.has(normalized)) {
     return {
       ok: false,
-      error: `Unknown ZCode model \"${requested}\". Supported models: ${[...ZCODE_MODEL_ALLOWLIST].join(", ")}.`,
+      error: \`Unknown ZCode model \"\${requested}\". Supported models: \${[...ZCODE_MODEL_ALLOWLIST].join(", ")}.\`,
     };
   }
   return { ok: true, model: normalized };
@@ -209,7 +202,7 @@ function completionResponse(model: string, prompt: string, content: string): Res
   const promptTokens = estimateTokens(prompt);
   const completionTokens = estimateTokens(content);
   return new Response(JSON.stringify({
-    id: `chatcmpl-zcode-${Date.now()}`,
+    id: \`chatcmpl-zcode-\${Date.now()}\`,
     object: "chat.completion",
     created: Math.floor(Date.now() / 1000),
     model,
@@ -224,14 +217,14 @@ function completionResponse(model: string, prompt: string, content: string): Res
 }
 
 function sseResponse(model: string, content: string): Response {
-  const id = `chatcmpl-zcode-${Date.now()}`;
+  const id = \`chatcmpl-zcode-\${Date.now()}\`;
   const created = Math.floor(Date.now() / 1000);
   const chunks = [
     { id, object: "chat.completion.chunk", created, model, choices: [{ index: 0, delta: { role: "assistant", content: "" }, finish_reason: null }] },
     { id, object: "chat.completion.chunk", created, model, choices: [{ index: 0, delta: { content }, finish_reason: null }] },
     { id, object: "chat.completion.chunk", created, model, choices: [{ index: 0, delta: {}, finish_reason: "stop" }] },
   ];
-  const body = `${chunks.map((chunk) => `data: ${JSON.stringify(chunk)}\n\n`).join("")}data: [DONE]\n\n`;
+  const body = \`\${chunks.map((chunk) => \`data: \${JSON.stringify(chunk)}\\n\\n\`).join("")}data: [DONE]\\n\\n\`;
   return new Response(body, {
     status: 200,
     headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", Connection: "keep-alive" },
@@ -239,7 +232,7 @@ function sseResponse(model: string, content: string): Response {
 }
 
 function sseErrorResponse(status: number, message: string): Response {
-  const body = `data: ${JSON.stringify(buildErrorBody(status, message))}\n\ndata: [DONE]\n\n`;
+  const body = \`data: \${JSON.stringify(buildErrorBody(status, message))}\\n\\ndata: [DONE]\\n\\n\`;
   return new Response(body, {
     status: 200,
     headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", Connection: "keep-alive" },
@@ -272,7 +265,7 @@ export class ZcodeExecutor extends BaseExecutor {
     const body = asRecord(input.body);
     const messages = Array.isArray(body.messages) ? body.messages as OpenAIMsg[] : [];
     const prompt = buildZcodePrompt(messages);
-    input.log?.info?.("ZCODE", `local app-server turn started model=${resolution.model}`);
+    input.log?.info?.("ZCODE", \`local app-server turn started model=\${resolution.model}\`);
 
     try {
       const content = await this.runTurn(resolution.model, prompt, input.signal, input.log);
@@ -372,7 +365,7 @@ export class ZcodeExecutor extends BaseExecutor {
       if (sessionId && !signal?.aborted) {
         await client.call("zcode-agent", "closeSession", [{ ...workspace, sessionId }]).catch(() => undefined);
       }
-      await client.close().catch((error) => log?.debug?.("ZCODE", `app-server close failed: ${sanitizeErrorMessage(error)}`));
+      await client.close().catch((error) => log?.debug?.("ZCODE", \`app-server close failed: \${sanitizeErrorMessage(error)}\`));
     }
   }
 
