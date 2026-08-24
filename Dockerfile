@@ -1,7 +1,7 @@
-FROM node:20-alpine
+FROM node:20-bookworm-slim
 
 # Install Python and build tools for native SQLite bindings
-RUN apk add --no-cache python3 make g++ gcc sqlite-dev
+RUN apt-get update && apt-get install -y python3 make g++ gcc libsqlite3-dev && rm -rf /var/lib/apt/lists/*
 
 # Set an environment variable so OmniRoute knows where to store data
 ENV DATA_DIR="/data"
@@ -23,7 +23,7 @@ RUN npm approve-scripts better-sqlite3 || true
 RUN npm install --legacy-peer-deps --foreground-scripts
 
 # Build the Next.js and API backend (using Webpack instead of Turbopack to avoid native dependency resolution bugs with better-sqlite3)
-RUN NEXT_TELEMETRY_DISABLED=1 OMNIROUTE_USE_TURBOPACK=0 OMNIROUTE_BUILD_MEMORY_MB=12288 NODE_OPTIONS=--max-old-space-size=12288 NEXT_PRIVATE_BUILD_WORKER=1 npm run build:backend
+RUN NEXT_TELEMETRY_DISABLED=1 OMNIROUTE_USE_TURBOPACK=0 OMNIROUTE_BUILD_MEMORY_MB=12288 NODE_OPTIONS="--max-old-space-size=12288 --no-warnings" NEXT_PRIVATE_BUILD_WORKER=0 npm run build:backend
 
 # Use the default node user
 USER node
