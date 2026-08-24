@@ -25,8 +25,8 @@ RUN npm install --legacy-peer-deps --foreground-scripts
 # Clear any local or cached .next directory to prevent poisoned cache from segfaulting Webpack
 RUN rm -rf .next/cache
 
-# Build the Next.js and API backend (using Webpack instead of Turbopack to avoid native dependency resolution bugs with better-sqlite3)
-RUN NEXT_TELEMETRY_DISABLED=1 OMNIROUTE_USE_TURBOPACK=0 OMNIROUTE_BUILD_MEMORY_MB=12288 NODE_OPTIONS="--max-old-space-size=12288 --no-warnings" NEXT_PRIVATE_STANDALONE=1 NEXT_PRIVATE_BUILD_WORKER=1 npm run build:backend
+# Build the Next.js and API backend using Turbopack to bypass Webpack native module worker SIGSEGV
+RUN NEXT_TELEMETRY_DISABLED=1 OMNIROUTE_USE_TURBOPACK=1 OMNIROUTE_BUILD_MEMORY_MB=12288 NODE_OPTIONS="--max-old-space-size=12288 --no-warnings" NEXT_PRIVATE_STANDALONE=1 NEXT_PRIVATE_BUILD_WORKER=1 npm run build:backend
 
 # Use the default node user
 USER node
