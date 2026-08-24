@@ -62,6 +62,7 @@ const hasOmniRouteConfig = (settings: Record<string, unknown> | null): boolean =
 // Read current crush.json
 const readConfig = async (): Promise<Record<string, unknown> | null> => {
   try {
+    /* turbopackIgnore: true */
     const content = await fs.readFile(getCrushConfigPath(), "utf-8");
     return JSON.parse(content) as Record<string, unknown>;
   } catch (err) {
@@ -152,6 +153,7 @@ export async function POST(request: Request) {
     // Read existing config or start fresh
     let existing: Record<string, unknown> = {};
     try {
+      /* turbopackIgnore: true */
       const raw = await fs.readFile(configPath, "utf-8");
       existing = JSON.parse(raw) as Record<string, unknown>;
     } catch {

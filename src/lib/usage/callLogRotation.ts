@@ -141,6 +141,7 @@ function readOrphanCandidates(
         const dayName = orphanScanCursor.pendingDayName;
         orphanScanCursor.pendingDayName = null;
         try {
+          /* turbopackIgnore: true */
           orphanScanCursor.day = fs.opendirSync(path.join(baseDir, dayName));
           orphanScanCursor.dayName = dayName;
         } catch {

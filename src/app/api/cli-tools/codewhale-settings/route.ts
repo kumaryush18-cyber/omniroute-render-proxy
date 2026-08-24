@@ -63,6 +63,7 @@ const hasOmniRouteConfig = (content: string | null): boolean => {
 const readConfig = async (): Promise<string | null> => {
   for (const candidate of [getPrimaryConfigPath(), getLegacyConfigPath()]) {
     try {
+      /* turbopackIgnore: true */
       return await fs.readFile(candidate, "utf-8");
     } catch (err) {
       if ((err as NodeJS.ErrnoException).code !== "ENOENT") throw err;
