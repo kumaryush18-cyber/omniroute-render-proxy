@@ -1,4 +1,4 @@
-FROM node:20-bookworm-slim
+FROM node:26-bookworm-slim
 
 # Install Python and build tools for native SQLite bindings
 RUN apt-get update && apt-get install -y python3 make g++ gcc libsqlite3-dev && rm -rf /var/lib/apt/lists/*
