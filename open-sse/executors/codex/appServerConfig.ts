@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import * as fsNative from "node:fs";
+// import { readFileSync } from "node:fs";
 
 /**
  * Resolved connection config for the Codex app-server WS transport.
@@ -56,7 +57,7 @@ function resolveToken(psd: ProviderSpecificData): string | null {
   );
   if (!tokenFile) return null;
   try {
-    const contents = readFileSync(tokenFile, "utf8").trim();
+    const contents = fsNative.readFileSync(tokenFile, "utf8").trim();
     return contents.length > 0 ? contents : null;
   } catch {
     return null;

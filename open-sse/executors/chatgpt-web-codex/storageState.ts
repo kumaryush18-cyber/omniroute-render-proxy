@@ -1,9 +1,14 @@
-import { createHash } from "node:crypto";
-import { existsSync, readFileSync, rmSync } from "node:fs";
-import { join } from "node:path";
+import * as fsNative from "node:fs";
+// import { createHash } from "node:crypto";
+import * as fsNative from "node:fs";
+// import { existsSync, readFileSync, rmSync } from "node:fs";
+import * as fsNative from "node:fs";
+// import { join } from "node:path";
 
-import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";
-import { loginVerificationMarkerPath } from "../../vendor/codex-chatgpt-web/browser-login.ts";
+import * as fsNative from "node:fs";
+// import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";
+import * as fsNative from "node:fs";
+// import { loginVerificationMarkerPath } from "../../vendor/codex-chatgpt-web/browser-login.ts";
 
 function connectionSegment(connectionId: string): string {
   return createHash("sha256").update(connectionId).digest("hex").slice(0, 32);
@@ -68,7 +73,7 @@ function validStorageState(value: unknown): value is Record<string, unknown> {
 }
 
 export function readConnectionStorageState(path: string): Record<string, unknown> {
-  const parsed = JSON.parse(readFileSync(path, "utf8")) as unknown;
+  const parsed = JSON.parse(fsNative.readFileSync(path, "utf8")) as unknown;
   if (!validStorageState(parsed)) throw new Error("ChatGPT browser storage state is invalid");
   return parsed;
 }
@@ -77,9 +82,9 @@ export function ensureConnectionStorageState(connectionId: string, rawCookie: st
   const paths = connectionRuntimePaths(connectionId);
   const markerPath = loginVerificationMarkerPath(paths.storageStatePath);
   const fingerprint = cookieFingerprint(rawCookie);
-  if (existsSync(paths.storageStatePath) && existsSync(markerPath)) {
+  if (fsNative.existsSync(paths.storageStatePath) && fsNative.existsSync(markerPath)) {
     try {
-      const marker = JSON.parse(readFileSync(markerPath, "utf8")) as Record<string, unknown>;
+      const marker = JSON.parse(fsNative.readFileSync(markerPath, "utf8")) as Record<string, unknown>;
       if (
         marker.version === 1 &&
         marker.authenticated === true &&
@@ -120,9 +125,9 @@ export function ensureConnectionStorageStateFromCredential(
     const paths = connectionRuntimePaths(connectionId);
     const markerPath = loginVerificationMarkerPath(paths.storageStatePath);
     const fingerprint = stateFingerprint(credential.storageState);
-    if (existsSync(paths.storageStatePath) && existsSync(markerPath)) {
+    if (fsNative.existsSync(paths.storageStatePath) && fsNative.existsSync(markerPath)) {
       try {
-        const marker = JSON.parse(readFileSync(markerPath, "utf8")) as Record<string, unknown>;
+        const marker = JSON.parse(fsNative.readFileSync(markerPath, "utf8")) as Record<string, unknown>;
         if (
           marker.version === 1 &&
           marker.authenticated === true &&
@@ -164,7 +169,7 @@ export function finalizeValidatedChatGptWebCodexSecrets(
   }
   const paths = connectionRuntimePaths(validationId);
   const markerPath = loginVerificationMarkerPath(paths.storageStatePath);
-  const marker = JSON.parse(readFileSync(markerPath, "utf8")) as Record<string, unknown>;
+  const marker = JSON.parse(fsNative.readFileSync(markerPath, "utf8")) as Record<string, unknown>;
   if (
     marker.version !== 1 ||
     marker.authenticated !== true ||
@@ -180,6 +185,6 @@ export function finalizeValidatedChatGptWebCodexSecrets(
     storageState,
     ...(runtimeKey ? { runtimeKey } : {}),
   });
-  rmSync(paths.root, { recursive: true, force: true });
+  fsNative.rmSync(paths.root, { recursive: true, force: true });
   return { encodedCredential: next, storageState };
 }

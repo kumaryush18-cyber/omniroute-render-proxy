@@ -1,6 +1,9 @@
-import { spawn, spawnSync, type ChildProcess } from "node:child_process";
-import { createHash } from "node:crypto";
-import {
+import * as fsNative from "node:fs";
+// import { spawn, spawnSync, type ChildProcess } from "node:child_process";
+import * as fsNative from "node:fs";
+// import { createHash } from "node:crypto";
+import * as fsNative from "node:fs";
+// import {
   chmodSync,
   closeSync,
   existsSync,
@@ -10,11 +13,14 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
-import { basename, join } from "node:path";
+import * as fsNative from "node:fs";
+// import { basename, join } from "node:path";
 
-import { unzipSync } from "fflate";
+import * as fsNative from "node:fs";
+// import { unzipSync } from "fflate";
 
-import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";
+import * as fsNative from "node:fs";
+// import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";
 
 export const CHATGPT_WEB_CODEX_TUNNEL_VERSION = "0.0.10";
 const RELEASE_BASE = `https://github.com/openai/tunnel-client/releases/download/v${CHATGPT_WEB_CODEX_TUNNEL_VERSION}`;
@@ -132,7 +138,7 @@ let ownsSupervisorLease = false;
 export function acquireTunnelSupervisorLease(): void {
   if (ownsSupervisorLease) return;
   const paths = tunnelClientPaths();
-  mkdirSync(paths.root, { recursive: true, mode: 0o700 });
+  fsNative.mkdirSync(paths.root, { recursive: true, mode: 0o700 });
   const path = paths.supervisorLease;
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
@@ -143,7 +149,7 @@ export function acquireTunnelSupervisorLease(): void {
           pid: process.pid,
           startedAt: new Date().toISOString(),
         };
-        writeFileSync(fd, `${JSON.stringify(lease)}\n`);
+        fsNative.writeFileSync(fd, `${JSON.stringify(lease)}\n`);
       } finally {
         closeSync(fd);
       }
@@ -153,7 +159,7 @@ export function acquireTunnelSupervisorLease(): void {
       if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
       let ownerPid = 0;
       try {
-        const lease = JSON.parse(readFileSync(path, "utf8")) as Partial<SupervisorLease>;
+        const lease = JSON.parse(fsNative.readFileSync(path, "utf8")) as Partial<SupervisorLease>;
         ownerPid = Number(lease.pid) || 0;
       } catch {
         ownerPid = 0;
@@ -165,7 +171,7 @@ export function acquireTunnelSupervisorLease(): void {
       if (processIsAlive(ownerPid)) {
         throw new Error(`ChatGPT Web (Codex) supervisor is already owned by process ${ownerPid}`);
       }
-      rmSync(path, { force: true });
+      fsNative.rmSync(path, { force: true });
     }
   }
   throw new Error("ChatGPT Web (Codex) supervisor lease could not be acquired");
@@ -177,9 +183,9 @@ export function tunnelSupervisorLeaseStatus(): {
   ownerPid?: number;
 } {
   const path = tunnelClientPaths().supervisorLease;
-  if (!existsSync(path)) return { ownedByCurrentProcess: false, conflict: false };
+  if (!fsNative.existsSync(path)) return { ownedByCurrentProcess: false, conflict: false };
   try {
-    const lease = JSON.parse(readFileSync(path, "utf8")) as Partial<SupervisorLease>;
+    const lease = JSON.parse(fsNative.readFileSync(path, "utf8")) as Partial<SupervisorLease>;
     const ownerPid = Number(lease.pid) || undefined;
     return {
       ownedByCurrentProcess: ownerPid === process.pid,
@@ -194,15 +200,15 @@ export function tunnelSupervisorLeaseStatus(): {
 export function releaseTunnelSupervisorLease(): void {
   if (!ownsSupervisorLease) return;
   const status = tunnelSupervisorLeaseStatus();
-  if (status.ownedByCurrentProcess) rmSync(tunnelClientPaths().supervisorLease, { force: true });
+  if (status.ownedByCurrentProcess) fsNative.rmSync(tunnelClientPaths().supervisorLease, { force: true });
   ownsSupervisorLease = false;
 }
 
 export async function ensureTunnelClientInstalled(): Promise<string> {
   const paths = tunnelClientPaths();
-  if (existsSync(paths.binary) && existsSync(paths.manifest)) {
-    const manifest = JSON.parse(readFileSync(paths.manifest, "utf8")) as Partial<InstallManifest>;
-    const actual = sha256(readFileSync(paths.binary));
+  if (fsNative.existsSync(paths.binary) && fsNative.existsSync(paths.manifest)) {
+    const manifest = JSON.parse(fsNative.readFileSync(paths.manifest, "utf8")) as Partial<InstallManifest>;
+    const actual = sha256(fsNative.readFileSync(paths.binary));
     if (
       manifest.version === 1 &&
       manifest.tunnelClientVersion === CHATGPT_WEB_CODEX_TUNNEL_VERSION &&
@@ -440,7 +446,7 @@ export function ensureTunnelRuntimeReady(
 
 export async function stopChatGptWebCodexTunnelRuntime(): Promise<void> {
   const paths = tunnelClientPaths();
-  if (ownsSupervisorLease && existsSync(paths.binary)) {
+  if (ownsSupervisorLease && fsNative.existsSync(paths.binary)) {
     spawnSync(
       paths.binary,
       [
@@ -457,7 +463,7 @@ export async function stopChatGptWebCodexTunnelRuntime(): Promise<void> {
     );
   }
   connectedRuntimes.clear();
-  for (const runtimeKeyFile of runtimeKeyFiles) rmSync(runtimeKeyFile, { force: true });
+  for (const runtimeKeyFile of runtimeKeyFiles) fsNative.rmSync(runtimeKeyFile, { force: true });
   runtimeKeyFiles.clear();
   releaseTunnelSupervisorLease();
 }

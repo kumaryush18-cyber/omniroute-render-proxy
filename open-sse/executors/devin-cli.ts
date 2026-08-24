@@ -26,12 +26,14 @@
  *   model_configs_v4.bin catalog on startup.
  */
 
-import { spawn } from "node:child_process";
+import * as fsNative from "node:fs";
+// import { spawn } from "node:child_process";
 import path from "node:path";
 import os from "node:os";
 import * as fsNative from "node:fs";
 const fs = fsNative.promises;
-import { BaseExecutor, type ExecuteInput, type ProviderCredentials } from "./base.ts";
+import * as fsNative from "node:fs";
+// import { BaseExecutor, type ExecuteInput, type ProviderCredentials } from "./base.ts";
 
 // ─── Binary discovery ────────────────────────────────────────────────────────
 
@@ -47,7 +49,7 @@ function resolveDevinBin(): string {
   if (isWin) {
     const localAppData = process.env.LOCALAPPDATA || path.join(os.homedir(), "AppData", "Local");
     const winPath = path.join(localAppData, "devin", "cli", "bin", "devin.exe");
-    if (fsNative.existsSync(winPath)) return winPath;
+    if (fsNative.fsNative.existsSync(winPath)) return winPath;
   }
 
   // 4. Linux/macOS installer paths
@@ -56,7 +58,7 @@ function resolveDevinBin(): string {
     path.join(home, ".local", "share", "devin", "bin", "devin"),
     path.join(home, ".devin", "bin", "devin"),
   ]) {
-    if (fsNative.existsSync(candidate)) return candidate;
+    if (fsNative.fsNative.existsSync(candidate)) return candidate;
   }
 
   // Fallback — rely on PATH

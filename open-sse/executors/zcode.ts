@@ -1,11 +1,19 @@
-import { randomUUID } from "node:crypto";
-import { existsSync } from "node:fs";
-import { homedir } from "node:os";
-import { join, resolve } from "node:path";
-import { ZCODE_MODELS } from "../config/providers/registry/zcode/index.ts";
-import { BaseExecutor, type ExecuteInput, type ExecutorExecuteResult, type ProviderCredentials } from "./base.ts";
-import { ZcodeAppServerClient, type ZcodeClientLike } from "./zcodeProtocol.ts";
-import { buildErrorBody, errorResponse, sanitizeErrorMessage } from "../utils/error.ts";
+import * as fsNative from "node:fs";
+// import { randomUUID } from "node:crypto";
+import * as fsNative from "node:fs";
+// import { existsSync } from "node:fs";
+import * as fsNative from "node:fs";
+// import { homedir } from "node:os";
+import * as fsNative from "node:fs";
+// import { join, resolve } from "node:path";
+import * as fsNative from "node:fs";
+// import { ZCODE_MODELS } from "../config/providers/registry/zcode/index.ts";
+import * as fsNative from "node:fs";
+// import { BaseExecutor, type ExecuteInput, type ExecutorExecuteResult, type ProviderCredentials } from "./base.ts";
+import * as fsNative from "node:fs";
+// import { ZcodeAppServerClient, type ZcodeClientLike } from "./zcodeProtocol.ts";
+import * as fsNative from "node:fs";
+// import { buildErrorBody, errorResponse, sanitizeErrorMessage } from "../utils/error.ts";
 
 const ZCODE_URL = "zcode://app-server/stdio";
 const DEFAULT_PROVIDER_ID = "builtin:zai-coding-plan";
@@ -96,7 +104,7 @@ function defaultCommand(): ZcodeCommand {
   const runtimeRoot = process.env.ZCODE_SERVER_RUNTIME_ROOT || join(homedir(), ".zcode", "server");
   const serverNode = process.env.ZCODE_SERVER_NODE || join(runtimeRoot, "node");
   const serverEntry = process.env.ZCODE_SERVER_ENTRY || join(runtimeRoot, "zcode-server.cjs");
-  if (existsSync(serverNode) && existsSync(serverEntry)) {
+  if (fsNative.existsSync(serverNode) && fsNative.existsSync(serverEntry)) {
     return { command: serverNode, args: [serverEntry] };
   }
   return { command: process.env.ZCODE_BIN || "zcode", args: parseArgs(process.env.ZCODE_ARGS) };

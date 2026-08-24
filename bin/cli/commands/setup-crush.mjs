@@ -7,13 +7,19 @@
  * secret stays out of the file. Remote-aware; curated catalog models.
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import * as fsNative from "node:fs";
+// import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import * as fsNative from "node:fs";
+// import { join } from "node:path";
 import os from "node:os";
-import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
-import { resolveActiveContext } from "../contexts.mjs";
-import { categoriseModel } from "./setup-codex.mjs";
-import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
+import * as fsNative from "node:fs";
+// import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
+import * as fsNative from "node:fs";
+// import { resolveActiveContext } from "../contexts.mjs";
+import * as fsNative from "node:fs";
+// import { categoriseModel } from "./setup-codex.mjs";
+import * as fsNative from "node:fs";
+// import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
 
 const API_KEY_REF = "$OMNIROUTE_API_KEY";
 
@@ -72,7 +78,7 @@ export function mergeCrushConfig(existing, provider) {
 
 function readJson(path) {
   try {
-    if (existsSync(path)) return JSON.parse(readFileSync(path, "utf8"));
+    if (fsNative.existsSync(path)) return JSON.parse(fsNative.readFileSync(path, "utf8"));
   } catch {
     /* corrupt/missing */
   }
@@ -140,8 +146,8 @@ export async function runSetupCrushCommand(opts = {}) {
     );
     return 0;
   }
-  mkdirSync(join(configPath, ".."), { recursive: true });
-  writeFileSync(configPath, out, "utf8");
+  fsNative.mkdirSync(join(configPath, ".."), { recursive: true });
+  fsNative.writeFileSync(configPath, out, "utf8");
   printSuccess(`Wrote ${configPath} (${provider.models.length} models under providers.omniroute)`);
   printInfo(
     "Provide the key (config references $OMNIROUTE_API_KEY):  export OMNIROUTE_API_KEY=..."

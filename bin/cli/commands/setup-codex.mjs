@@ -12,12 +12,17 @@
  * The command is idempotent: re-running updates existing profile files in place.
  */
 
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import * as fsNative from "node:fs";
+// import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import * as fsNative from "node:fs";
+// import { join } from "node:path";
 import os from "node:os";
-import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
-import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
-import { t } from "../i18n.mjs";
+import * as fsNative from "node:fs";
+// import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
+import * as fsNative from "node:fs";
+// import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
+import * as fsNative from "node:fs";
+// import { t } from "../i18n.mjs";
 
 // ── Model categorisation ──────────────────────────────────────────────────────
 
@@ -251,8 +256,8 @@ export async function syncCodexProfilesFromModels(models, opts = {}) {
   const dryRun = Boolean(opts.dryRun);
   const onlyFilter = opts.only ? opts.only.split(",").map((s) => s.trim()) : null;
 
-  if (!dryRun && !existsSync(codexHome)) {
-    mkdirSync(codexHome, { recursive: true });
+  if (!dryRun && !fsNative.existsSync(codexHome)) {
+    fsNative.mkdirSync(codexHome, { recursive: true });
   }
 
   let written = 0;
@@ -283,7 +288,7 @@ export async function syncCodexProfilesFromModels(models, opts = {}) {
       console.log(`\n── [dry-run] ${filePath} ──`);
       console.log(content);
     } else {
-      writeFileSync(filePath, content, "utf8");
+      fsNative.writeFileSync(filePath, content, "utf8");
     }
     profiles.push({ name: cfg.name, model: id, filePath });
     written++;

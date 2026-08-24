@@ -1,4 +1,5 @@
-import {
+import * as fsNative from "node:fs";
+// import {
   copyFileSync,
   createReadStream,
   createWriteStream,
@@ -10,15 +11,24 @@ import {
   unlinkSync,
   writeFileSync,
 } from "node:fs";
-import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
-import { dirname, join, extname, basename } from "node:path";
-import { Readable } from "node:stream";
-import { pipeline } from "node:stream/promises";
-import { resolveDataDir } from "../data-dir.mjs";
-import { getBaseUrl, isServerUp } from "../api.mjs";
-import { t } from "../i18n.mjs";
-import { backupSqliteFile } from "../sqlite.mjs";
-import { CLI_TOKEN_HEADER, getCliToken } from "../utils/cliToken.mjs";
+import * as fsNative from "node:fs";
+// import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
+import * as fsNative from "node:fs";
+// import { dirname, join, extname, basename } from "node:path";
+import * as fsNative from "node:fs";
+// import { Readable } from "node:stream";
+import * as fsNative from "node:fs";
+// import { pipeline } from "node:stream/promises";
+import * as fsNative from "node:fs";
+// import { resolveDataDir } from "../data-dir.mjs";
+import * as fsNative from "node:fs";
+// import { getBaseUrl, isServerUp } from "../api.mjs";
+import * as fsNative from "node:fs";
+// import { t } from "../i18n.mjs";
+import * as fsNative from "node:fs";
+// import { backupSqliteFile } from "../sqlite.mjs";
+import * as fsNative from "node:fs";
+// import { CLI_TOKEN_HEADER, getCliToken } from "../utils/cliToken.mjs";
 
 function getBackupDir() {
   return join(resolveDataDir(), "backups");
@@ -134,10 +144,10 @@ async function encryptFile(srcPath, destPath, passphrase) {
   const key = scryptSync(passphrase, salt, 32);
   const cipher = createCipheriv("aes-256-gcm", key, iv);
   const tmpCipherPath = `${destPath}.ciphertext`;
-  await pipeline(createReadStream(srcPath), cipher, createWriteStream(tmpCipherPath));
+  await pipeline(fsNative.createReadStream(srcPath), cipher, fsNative.createWriteStream(tmpCipherPath));
   const authTag = cipher.getAuthTag();
   // Format: salt(16) + iv(12) + authTag(16) + ciphertext
-  const out = createWriteStream(destPath);
+  const out = fsNative.createWriteStream(destPath);
   try {
     await new Promise((resolve, reject) => {
       out.write(Buffer.concat([salt, iv, authTag]), (err) => {
@@ -145,10 +155,10 @@ async function encryptFile(srcPath, destPath, passphrase) {
         else resolve();
       });
     });
-    await pipeline(createReadStream(tmpCipherPath), out);
+    await pipeline(fsNative.createReadStream(tmpCipherPath), out);
   } finally {
     try {
-      unlinkSync(tmpCipherPath);
+      fsNative.unlinkSync(tmpCipherPath);
     } catch {}
   }
 }
@@ -165,15 +175,15 @@ async function promptPassphrase() {
 }
 
 async function pruneBackups(backupDir, retention) {
-  if (!retention || retention <= 0 || !existsSync(backupDir)) return;
+  if (!retention || retention <= 0 || !fsNative.existsSync(backupDir)) return;
   try {
-    const dirs = readdirSync(backupDir)
+    const dirs = fsNative.readdirSync(backupDir)
       .filter((f) => f.startsWith("omniroute-backup-"))
       .sort()
       .reverse();
     for (const old of dirs.slice(retention)) {
       const { rmSync } = await import("node:fs");
-      rmSync(join(backupDir, old), { recursive: true, force: true });
+      fsNative.rmSync(join(backupDir, old), { recursive: true, force: true });
     }
   } catch {}
 }
@@ -192,7 +202,7 @@ export async function runBackupCommand(opts = {}) {
   let passphrase = null;
   if (opts.encrypt) {
     if (opts.keyFile) {
-      passphrase = readFileSync(opts.keyFile, "utf8").trim();
+      passphrase = fsNative.readFileSync(opts.keyFile, "utf8").trim();
     } else {
       passphrase = await promptPassphrase();
       if (!passphrase) {
@@ -203,7 +213,7 @@ export async function runBackupCommand(opts = {}) {
   }
 
   try {
-    if (!existsSync(backupDir)) mkdirSync(backupDir, { recursive: true });
+    if (!fsNative.existsSync(backupDir)) fsNative.mkdirSync(backupDir, { recursive: true });
 
     let backedUp = 0;
     let skipped = 0;
@@ -214,21 +224,21 @@ export async function runBackupCommand(opts = {}) {
         continue;
       }
       const sourcePath = join(dataDir, file.name);
-      if (existsSync(sourcePath)) {
+      if (fsNative.existsSync(sourcePath)) {
         const destName = opts.encrypt ? `${file.name}.enc` : file.name;
         const destPath = join(backupPath, destName);
-        mkdirSync(dirname(destPath), { recursive: true });
+        fsNative.mkdirSync(dirname(destPath), { recursive: true });
         if (file.name.endsWith(".sqlite")) {
           const tmpPath = destPath.replace(/\.enc$/, "");
           await backupSqliteFile(sourcePath, tmpPath);
           if (opts.encrypt) {
             await encryptFile(tmpPath, destPath, passphrase);
-            unlinkSync(tmpPath);
+            fsNative.unlinkSync(tmpPath);
           }
         } else if (opts.encrypt) {
           await encryptFile(sourcePath, destPath, passphrase);
         } else {
-          copyFileSync(sourcePath, destPath);
+          fsNative.copyFileSync(sourcePath, destPath);
         }
         backedUp++;
       } else {
@@ -242,10 +252,10 @@ export async function runBackupCommand(opts = {}) {
         version: "omniroute-cli-v1",
         encrypted: !!opts.encrypt,
         files: FILES_TO_BACKUP.filter(
-          (f) => existsSync(join(dataDir, f.name)) && !shouldExclude(f.name, excludePatterns)
+          (f) => fsNative.existsSync(join(dataDir, f.name)) && !shouldExclude(f.name, excludePatterns)
         ).map((f) => (opts.encrypt ? `${f.name}.enc` : f.name)),
       };
-      writeFileSync(join(backupPath, "backup-info.json"), JSON.stringify(info, null, 2), "utf8");
+      fsNative.writeFileSync(join(backupPath, "backup-info.json"), JSON.stringify(info, null, 2), "utf8");
 
       if (opts.cloud) {
         const cloudCode = await _uploadBackupToCloud(backupPath, info);
@@ -316,15 +326,15 @@ async function* createBackupMultipartStream(backupPath, info, boundary) {
   yield encode(
     `--${boundary}\r\nContent-Disposition: form-data; name="info"\r\nContent-Type: application/json\r\n\r\n${JSON.stringify(info)}\r\n`
   );
-  for (const fname of readdirSync(backupPath)) {
+  for (const fname of fsNative.readdirSync(backupPath)) {
     const fullPath = join(backupPath, fname);
-    const stat = statSync(fullPath);
+    const stat = fsNative.statSync(fullPath);
     if (!stat.isFile()) continue;
     const safeName = fname.replace(/["\r\n]/g, "_");
     yield encode(
       `--${boundary}\r\nContent-Disposition: form-data; name="files"; filename="${safeName}"\r\nContent-Type: application/octet-stream\r\n\r\n`
     );
-    yield* createReadStream(fullPath);
+    yield* fsNative.createReadStream(fullPath);
     yield encode("\r\n");
   }
   yield encode(`--${boundary}--\r\n`);
@@ -344,8 +354,8 @@ export async function runBackupAutoEnableCommand(opts = {}) {
     retention: opts.retention || null,
     updatedAt: new Date().toISOString(),
   };
-  mkdirSync(dirname(schedulePath), { recursive: true });
-  writeFileSync(schedulePath, JSON.stringify(schedule, null, 2), "utf8");
+  fsNative.mkdirSync(dirname(schedulePath), { recursive: true });
+  fsNative.writeFileSync(schedulePath, JSON.stringify(schedule, null, 2), "utf8");
   console.log(t("backup.auto.enabled", { cron: schedule.cron }));
   console.log(t("backup.auto.hint"));
   return 0;
@@ -353,11 +363,11 @@ export async function runBackupAutoEnableCommand(opts = {}) {
 
 export async function runBackupAutoDisableCommand() {
   const schedulePath = getSchedulePath();
-  if (existsSync(schedulePath)) {
-    const schedule = JSON.parse(readFileSync(schedulePath, "utf8"));
+  if (fsNative.existsSync(schedulePath)) {
+    const schedule = JSON.parse(fsNative.readFileSync(schedulePath, "utf8"));
     schedule.enabled = false;
     schedule.updatedAt = new Date().toISOString();
-    writeFileSync(schedulePath, JSON.stringify(schedule, null, 2), "utf8");
+    fsNative.writeFileSync(schedulePath, JSON.stringify(schedule, null, 2), "utf8");
   }
   console.log(t("backup.auto.disabled"));
   return 0;
@@ -365,11 +375,11 @@ export async function runBackupAutoDisableCommand() {
 
 export async function runBackupAutoStatusCommand() {
   const schedulePath = getSchedulePath();
-  if (!existsSync(schedulePath)) {
+  if (!fsNative.existsSync(schedulePath)) {
     console.log(t("backup.auto.notConfigured"));
     return 0;
   }
-  const schedule = JSON.parse(readFileSync(schedulePath, "utf8"));
+  const schedule = JSON.parse(fsNative.readFileSync(schedulePath, "utf8"));
   const statusLabel = schedule.enabled ? "\x1b[32m● enabled\x1b[0m" : "\x1b[31m○ disabled\x1b[0m";
   console.log(`${t("backup.auto.title")}: ${statusLabel}`);
   console.log(`  cron:      ${schedule.cron}`);
@@ -384,13 +394,13 @@ export async function runRestoreCommand(backupId, opts = {}) {
 
   if (opts.list || !backupId) {
     console.log(`\n\x1b[1m\x1b[36m${t("backup.listTitle")}\x1b[0m\n`);
-    if (!existsSync(backupDir)) {
+    if (!fsNative.existsSync(backupDir)) {
       console.log(t("backup.noBackups"));
       return 0;
     }
 
     try {
-      const dirs = readdirSync(backupDir)
+      const dirs = fsNative.readdirSync(backupDir)
         .filter((f) => f.startsWith("omniroute-backup-"))
         .sort()
         .reverse();
@@ -402,8 +412,8 @@ export async function runRestoreCommand(backupId, opts = {}) {
 
       for (const dir of dirs) {
         const infoPath = join(backupDir, dir, "backup-info.json");
-        if (existsSync(infoPath)) {
-          const info = JSON.parse(readFileSync(infoPath, "utf8"));
+        if (fsNative.existsSync(infoPath)) {
+          const info = JSON.parse(fsNative.readFileSync(infoPath, "utf8"));
           const id = dir.replace("omniroute-backup-", "");
           const dateStr = new Date(info.timestamp).toLocaleString();
           console.log(`  ${id}`);
@@ -425,13 +435,13 @@ export async function runRestoreCommand(backupId, opts = {}) {
 
   const safeBackupId = String(backupId).replace(/[/\\]/g, "_");
   const backupPath = join(backupDir, `omniroute-backup-${safeBackupId}`);
-  if (!existsSync(backupPath)) {
+  if (!fsNative.existsSync(backupPath)) {
     console.error(t("backup.notFound", { name: backupId }));
     return 1;
   }
 
   const infoPath = join(backupPath, "backup-info.json");
-  const ts = existsSync(infoPath) ? JSON.parse(readFileSync(infoPath, "utf8")).timestamp : backupId;
+  const ts = fsNative.existsSync(infoPath) ? JSON.parse(fsNative.readFileSync(infoPath, "utf8")).timestamp : backupId;
 
   if (!opts.yes) {
     const readline = await import("node:readline");
@@ -452,8 +462,8 @@ export async function runRestoreCommand(backupId, opts = {}) {
   try {
     for (const file of FILES_TO_BACKUP) {
       const sourcePath = join(backupPath, file.name);
-      if (existsSync(sourcePath)) {
-        copyFileSync(sourcePath, join(dataDir, file.name));
+      if (fsNative.existsSync(sourcePath)) {
+        fsNative.copyFileSync(sourcePath, join(dataDir, file.name));
         console.log(`\x1b[2m  Restored: ${file.name}\x1b[0m`);
       }
     }
