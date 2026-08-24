@@ -27,13 +27,11 @@
  */
 
 import * as fsNative from "node:fs";
-// import { spawn } from "node:child_process";
+import { spawn } from "node:child_process";
 import path from "node:path";
 import os from "node:os";
-import * as fsNative from "node:fs";
 const fs = fsNative.promises;
-import * as fsNative from "node:fs";
-// import { BaseExecutor, type ExecuteInput, type ProviderCredentials } from "./base.ts";
+import { BaseExecutor, type ExecuteInput, type ProviderCredentials } from "./base.ts";
 
 // ─── Binary discovery ────────────────────────────────────────────────────────
 

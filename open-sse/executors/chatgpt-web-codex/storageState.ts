@@ -1,14 +1,10 @@
 import * as fsNative from "node:fs";
-// import { createHash } from "node:crypto";
-import * as fsNative from "node:fs";
-// import { existsSync, readFileSync, rmSync } from "node:fs";
-import * as fsNative from "node:fs";
-// import { join } from "node:path";
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync, rmSync } from "node:fs";
+import { join } from "node:path";
 
-import * as fsNative from "node:fs";
-// import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";
-import * as fsNative from "node:fs";
-// import { loginVerificationMarkerPath } from "../../vendor/codex-chatgpt-web/browser-login.ts";
+import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";
+import { loginVerificationMarkerPath } from "../../vendor/codex-chatgpt-web/browser-login.ts";
 
 function connectionSegment(connectionId: string): string {
   return createHash("sha256").update(connectionId).digest("hex").slice(0, 32);

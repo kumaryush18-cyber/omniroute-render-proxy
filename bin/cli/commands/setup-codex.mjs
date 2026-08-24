@@ -13,16 +13,12 @@
  */
 
 import * as fsNative from "node:fs";
-// import { existsSync, mkdirSync, writeFileSync } from "node:fs";
-import * as fsNative from "node:fs";
-// import { join } from "node:path";
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import os from "node:os";
-import * as fsNative from "node:fs";
-// import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
-import * as fsNative from "node:fs";
-// import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
-import * as fsNative from "node:fs";
-// import { t } from "../i18n.mjs";
+import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
+import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
+import { t } from "../i18n.mjs";
 
 // ── Model categorisation ──────────────────────────────────────────────────────
 

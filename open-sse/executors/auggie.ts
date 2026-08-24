@@ -22,19 +22,15 @@
  *   4. ~/.local/share/auggie/bin/auggie      (Linux installer)
  *   5. ~/.auggie/bin/auggie                  (alternate installer layout)
  */
-
 import * as fsNative from "node:fs";
-// import { spawn } from "node:child_process";
+
+import { spawn } from "node:child_process";
 import path from "node:path";
 import os from "node:os";
-import * as fsNative from "node:fs";
 const fs = fsNative.promises;
-import * as fsNative from "node:fs";
-// import { BaseExecutor, type ExecuteInput, type ProviderCredentials } from "./base.ts";
-import * as fsNative from "node:fs";
-// import { buildErrorBody, errorResponse, sanitizeErrorMessage } from "../utils/error.ts";
-import * as fsNative from "node:fs";
-// import { auggieProvider } from "../config/providers/registry/auggie/index.ts";
+import { BaseExecutor, type ExecuteInput, type ProviderCredentials } from "./base.ts";
+import { buildErrorBody, errorResponse, sanitizeErrorMessage } from "../utils/error.ts";
+import { auggieProvider } from "../config/providers/registry/auggie/index.ts";
 
 const AUGGIE_URL = "auggie://cli/stdio";
 
