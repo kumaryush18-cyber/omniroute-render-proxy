@@ -14,7 +14,8 @@
  */
 import net from "node:net";
 import path from "node:path";
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 import { getMitmStatus } from "@/mitm/manager";
@@ -47,7 +48,7 @@ export async function GET(request: Request): Promise<Response> {
     const agentId = new URL(request.url).searchParams.get("agentId") ?? undefined;
     const status = await getMitmStatus(agentId);
     const certPath = path.join(resolveMitmDataDir(), "mitm", "server.crt");
-    const certExists = fs.existsSync(certPath);
+    const certExists = fsNative.existsSync(certPath);
     const certTrusted = certExists ? await checkCertInstalled(certPath) : false;
     const port =
       Number(process.env.MITM_LOCAL_PORT) > 0 ? Number(process.env.MITM_LOCAL_PORT) : 443;

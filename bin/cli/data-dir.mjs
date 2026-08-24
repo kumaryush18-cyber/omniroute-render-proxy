@@ -1,4 +1,5 @@
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import os from "node:os";
 import path from "node:path";
 
@@ -26,9 +27,9 @@ export function getDefaultDataDir() {
   const homeDir = safeHomeDir();
   const legacyDir = getLegacyDotDataDir(homeDir);
 
-  if (fs.existsSync(legacyDir)) {
+  if (fsNative.existsSync(legacyDir)) {
     try {
-      if (fs.statSync(legacyDir).isDirectory()) {
+      if (fsNative.statSync(legacyDir).isDirectory()) {
         return legacyDir;
       }
     } catch {

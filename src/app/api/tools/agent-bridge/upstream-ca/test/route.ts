@@ -9,7 +9,8 @@
  * LOCAL_ONLY: covered by the "/api/tools/agent-bridge/" prefix in routeGuard.ts.
  */
 import crypto from "crypto";
-import fs from "fs";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 
 import { AgentBridgeUpstreamCaPostSchema } from "@/shared/schemas/agentBridge";
 import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
@@ -34,13 +35,13 @@ export async function POST(request: Request): Promise<Response> {
 
   const { path: caPath } = parsed.data;
 
-  if (!fs.existsSync(caPath)) {
+  if (!fsNative.existsSync(caPath)) {
     return createErrorResponse({ status: 400, message: `Upstream CA file not found: ${caPath}` });
   }
 
   let pem: string;
   try {
-    pem = fs.readFileSync(caPath, "utf8");
+    pem = fsNative.readFileSync(caPath, "utf8");
   } catch (err) {
     const msg = sanitizeErrorMessage(err instanceof Error ? err.message : String(err));
     return createErrorResponse({ status: 400, message: `Unable to read upstream CA file: ${msg}` });

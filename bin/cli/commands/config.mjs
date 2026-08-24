@@ -1,18 +1,19 @@
 import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
 import { t } from "../i18n.mjs";
 import path from "node:path";
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import { fileURLToPath } from "node:url";
 import { resolveDataDir } from "../data-dir.mjs";
 import { registerContexts } from "./contexts.mjs";
 import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
 
 function ensureBackup(configPath) {
-  if (!fs.existsSync(configPath)) return;
+  if (!fsNative.existsSync(configPath)) return;
   const backupDir = path.join(path.dirname(configPath), ".omniroute.bak");
-  if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir, { recursive: true });
+  if (!fsNative.existsSync(backupDir)) fsNative.mkdirSync(backupDir, { recursive: true });
   const backupPath = path.join(backupDir, path.basename(configPath) + ".bak");
-  fs.copyFileSync(configPath, backupPath);
+  fsNative.copyFileSync(configPath, backupPath);
   return backupPath;
 }
 
@@ -115,12 +116,12 @@ async function runConfigSetCommand(toolId, opts = {}) {
   }
 
   const dir = path.dirname(result.configPath);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  if (!fsNative.existsSync(dir)) fsNative.mkdirSync(dir, { recursive: true });
 
   const backupPath = ensureBackup(result.configPath);
   if (backupPath) printInfo(`Backup saved to: ${backupPath}`);
 
-  fs.writeFileSync(result.configPath, result.content, "utf-8");
+  fsNative.writeFileSync(result.configPath, result.content, "utf-8");
   printSuccess(`Config written to ${result.configPath}`);
   return 0;
 }
@@ -157,7 +158,7 @@ function loadI18nLocales() {
     "i18n.json"
   );
   try {
-    return JSON.parse(fs.readFileSync(cfgPath, "utf8")).locales || [];
+    return JSON.parse(fsNative.readFileSync(cfgPath, "utf8")).locales || [];
   } catch {
     return [];
   }
@@ -169,7 +170,7 @@ function getCliEnvPath() {
 
 function upsertEnvLine(envPath, key, value) {
   let content = "";
-  if (fs.existsSync(envPath)) content = fs.readFileSync(envPath, "utf8");
+  if (fsNative.existsSync(envPath)) content = fsNative.readFileSync(envPath, "utf8");
   const lines = content.split("\n");
   const idx = lines.findIndex((l) => l.trimStart().startsWith(`${key}=`));
   const newLine = `${key}=${value}`;
@@ -180,9 +181,9 @@ function upsertEnvLine(envPath, key, value) {
     lines.push(newLine);
   }
   const dir = path.dirname(envPath);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  if (!fsNative.existsSync(dir)) fsNative.mkdirSync(dir, { recursive: true });
   const tmp = `${envPath}.tmp`;
-  fs.writeFileSync(tmp, lines.join("\n"), "utf8");
+  fsNative.writeFileSync(tmp, lines.join("\n"), "utf8");
   fs.renameSync(tmp, envPath);
 }
 

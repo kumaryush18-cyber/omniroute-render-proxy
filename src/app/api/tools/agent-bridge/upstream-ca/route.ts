@@ -11,7 +11,8 @@ import { AgentBridgeUpstreamCaPostSchema } from "@/shared/schemas/agentBridge";
 import { resolveMitmDataDir } from "@/mitm/dataDir";
 import { configureUpstreamCa } from "@/mitm/upstreamTrust";
 import path from "path";
-import fs from "fs";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 
@@ -19,8 +20,8 @@ const CA_PATH_FILE = path.join(resolveMitmDataDir(), "mitm", "upstream-ca.path")
 
 function readStoredCaPath(): string | null {
   try {
-    if (!fs.existsSync(CA_PATH_FILE)) return null;
-    const raw = fs.readFileSync(CA_PATH_FILE, "utf8").trim();
+    if (!fsNative.existsSync(CA_PATH_FILE)) return null;
+    const raw = fsNative.readFileSync(CA_PATH_FILE, "utf8").trim();
     return raw || null;
   } catch {
     return null;
@@ -29,8 +30,8 @@ function readStoredCaPath(): string | null {
 
 function writeStoredCaPath(caPath: string): void {
   const dir = path.dirname(CA_PATH_FILE);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(CA_PATH_FILE, caPath + "\n");
+  if (!fsNative.existsSync(dir)) fsNative.mkdirSync(dir, { recursive: true });
+  fsNative.writeFileSync(CA_PATH_FILE, caPath + "\n");
 }
 
 export async function GET(): Promise<Response> {
@@ -65,7 +66,7 @@ export async function POST(request: Request): Promise<Response> {
   const { path: caPath } = parsed.data;
 
   // Validate the file actually exists (plan 11 §4.7)
-  if (!fs.existsSync(caPath)) {
+  if (!fsNative.existsSync(caPath)) {
     return createErrorResponse({
       status: 400,
       message: `Upstream CA file not found: ${caPath}`,

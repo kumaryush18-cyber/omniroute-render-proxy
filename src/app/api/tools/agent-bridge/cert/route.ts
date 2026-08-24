@@ -13,7 +13,8 @@ import {
   resolveMitmSudoPassword,
 } from "@/mitm/sudoGate";
 import path from "path";
-import fs from "fs";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 
@@ -30,7 +31,7 @@ function certPath(): string {
 export async function GET(): Promise<Response> {
   try {
     const crtPath = certPath();
-    const exists = fs.existsSync(crtPath);
+    const exists = fsNative.existsSync(crtPath);
     const trusted = exists ? await checkCertInstalled(crtPath) : false;
     return Response.json({ exists, trusted, path: exists ? crtPath : null });
   } catch (err) {
@@ -53,7 +54,7 @@ export async function POST(request: Request): Promise<Response> {
 
   try {
     const crtPath = certPath();
-    if (!fs.existsSync(crtPath)) {
+    if (!fsNative.existsSync(crtPath)) {
       return createErrorResponse({
         status: 404,
         message: "Certificate not found. Generate one first.",
@@ -111,7 +112,7 @@ export async function DELETE(request: Request): Promise<Response> {
 
   try {
     const crtPath = certPath();
-    if (!fs.existsSync(crtPath)) {
+    if (!fsNative.existsSync(crtPath)) {
       // No cert on disk → nothing to untrust. Idempotent success.
       return Response.json({ ok: true, trusted: false });
     }

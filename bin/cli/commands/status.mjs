@@ -2,12 +2,13 @@ import { printHeading } from "../io.mjs";
 import { resolveDataDir, resolveStoragePath } from "../data-dir.mjs";
 import { t } from "../i18n.mjs";
 import path from "node:path";
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import os from "node:os";
 
 function getPackageVersion() {
   try {
-    const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), "package.json"), "utf-8"));
+    const pkg = JSON.parse(fsNative.readFileSync(path.join(process.cwd(), "package.json"), "utf-8"));
     return pkg.version || "unknown";
   } catch {
     return "unknown";
@@ -44,12 +45,12 @@ export async function runStatusCommand(opts = {}) {
     version,
     dataDir,
     database: {
-      exists: fs.existsSync(dbPath),
+      exists: fsNative.existsSync(dbPath),
       path: dbPath,
-      size: fs.existsSync(dbPath) ? formatBytes(fs.statSync(dbPath).size) : null,
+      size: fsNative.existsSync(dbPath) ? formatBytes(fsNative.statSync(dbPath).size) : null,
     },
     configDir: path.join(dataDir, "config"),
-    configExists: fs.existsSync(path.join(dataDir, "config")),
+    configExists: fsNative.existsSync(path.join(dataDir, "config")),
   };
 
   if (isVerbose || !isJson) {

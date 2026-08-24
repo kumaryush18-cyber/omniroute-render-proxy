@@ -5,13 +5,14 @@
  */
 import { resolveMitmDataDir } from "@/mitm/dataDir";
 import path from "path";
-import fs from "fs";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import { createErrorResponse } from "@/lib/api/errorResponse";
 
 export async function GET(): Promise<Response> {
   const crtPath = path.join(resolveMitmDataDir(), "mitm", "server.crt");
 
-  if (!fs.existsSync(crtPath)) {
+  if (!fsNative.existsSync(crtPath)) {
     return createErrorResponse({
       status: 404,
       message: "Certificate not found. Generate one first via POST /api/tools/agent-bridge/cert/regenerate",
@@ -19,7 +20,7 @@ export async function GET(): Promise<Response> {
   }
 
   try {
-    const pem = fs.readFileSync(crtPath);
+    const pem = fsNative.readFileSync(crtPath);
     return new Response(pem, {
       status: 200,
       headers: {

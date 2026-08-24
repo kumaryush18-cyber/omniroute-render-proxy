@@ -1,4 +1,5 @@
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import { resolveDataDir, resolveStoragePath } from "./data-dir.mjs";
 import { ensureProviderSchema } from "./provider-store.mjs";
 import { ensureSettingsSchema, hashManagementPassword, updateSettings } from "./settings-store.mjs";
@@ -117,7 +118,7 @@ export function createSqliteNativeError(error) {
 async function openSqliteDatabase(dbPath, options = {}) {
   const loaded = await loadSqlite();
   if (loaded.driver === "bun:sqlite" || (process.versions.bun && !loaded.Database)) {
-    if (options.fileMustExist && !fs.existsSync(dbPath)) {
+    if (options.fileMustExist && !fsNative.existsSync(dbPath)) {
       throw new Error(`SQLite file does not exist: ${dbPath}`);
     }
     const bunOptions = options.readonly
@@ -142,7 +143,7 @@ async function openSqliteDatabase(dbPath, options = {}) {
 export async function openOmniRouteDb() {
   const dataDir = resolveDataDir();
   const dbPath = resolveStoragePath(dataDir);
-  fs.mkdirSync(dataDir, { recursive: true });
+  fsNative.mkdirSync(dataDir, { recursive: true });
 
   const db = await openSqliteDatabase(dbPath);
 
@@ -168,12 +169,12 @@ export async function backupSqliteFile(sourcePath, destPath) {
     if (typeof db.backup === "function") {
       await db.backup(destPath);
     } else if (sourcePath === ":memory:" && typeof db.serialize === "function") {
-      fs.writeFileSync(destPath, Buffer.from(db.serialize()));
+      fsNative.writeFileSync(destPath, Buffer.from(db.serialize()));
     } else {
       try {
         db.exec("PRAGMA wal_checkpoint(TRUNCATE)");
       } catch {}
-      fs.copyFileSync(sourcePath, destPath);
+      fsNative.copyFileSync(sourcePath, destPath);
     }
   } finally {
     db.close();
@@ -230,7 +231,7 @@ export async function readEncryptedCredentialSamples(dbPath) {
 }
 
 export async function readManagementPasswordState(dbPath = resolveStoragePath(resolveDataDir())) {
-  if (!fs.existsSync(dbPath)) {
+  if (!fsNative.existsSync(dbPath)) {
     return { exists: false, hasPassword: false };
   }
 

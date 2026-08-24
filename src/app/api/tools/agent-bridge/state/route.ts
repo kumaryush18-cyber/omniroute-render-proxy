@@ -18,7 +18,8 @@ import { checkCertInstalled } from "@/mitm/cert/install";
 import { resolveMitmDataDir } from "@/mitm/dataDir";
 import { ALL_TARGETS } from "@/mitm/targets/index";
 import path from "path";
-import fs from "fs";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 
 export async function GET(): Promise<Response> {
   try {
@@ -45,7 +46,7 @@ export async function GET(): Promise<Response> {
     // Compute REAL certTrusted (OS trust store check, not just file exists)
     const certDir = path.join(resolveMitmDataDir(), "mitm");
     const certPath = path.join(certDir, "server.crt");
-    const certExists = fs.existsSync(certPath);
+    const certExists = fsNative.existsSync(certPath);
     const certTrusted = certExists ? await checkCertInstalled(certPath) : false;
 
     // Compute aggregate dnsConfigured: true if ANY agent has hosts spoofed

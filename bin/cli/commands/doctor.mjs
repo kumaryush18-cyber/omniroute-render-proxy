@@ -1,4 +1,5 @@
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import net from "node:net";
 import os from "node:os";
 import path from "node:path";
@@ -56,7 +57,7 @@ function findEnvFileCandidates(dataDir) {
 
 function checkConfig(dataDir) {
   const envCandidates = findEnvFileCandidates(dataDir);
-  const envFile = envCandidates.find((candidate) => fs.existsSync(candidate));
+  const envFile = envCandidates.find((candidate) => fsNative.existsSync(candidate));
   const portChecks = [
     ["PORT", process.env.PORT],
     ["API_PORT", process.env.API_PORT],
@@ -90,7 +91,7 @@ function resolveMigrationsDir(rootDir) {
     path.join(process.cwd(), "src", "lib", "db", "migrations"),
   ].filter(Boolean);
 
-  return candidates.find((candidate) => fs.existsSync(candidate)) || null;
+  return candidates.find((candidate) => fsNative.existsSync(candidate)) || null;
 }
 
 function readMigrationFiles(migrationsDir) {
@@ -106,7 +107,7 @@ function readMigrationFiles(migrationsDir) {
 }
 
 async function checkDatabase(dbPath, rootDir) {
-  if (!fs.existsSync(dbPath)) {
+  if (!fsNative.existsSync(dbPath)) {
     return warn("Database", `SQLite database not found at ${dbPath}`, { dbPath });
   }
 
@@ -174,7 +175,7 @@ async function checkStorageEncryption(dbPath) {
     return fail("Storage/encryption", "STORAGE_ENCRYPTION_KEY is set but empty");
   }
 
-  if (!fs.existsSync(dbPath)) {
+  if (!fsNative.existsSync(dbPath)) {
     return secret
       ? ok("Storage/encryption", "Encryption key is configured; database not initialized yet")
       : warn("Storage/encryption", "No STORAGE_ENCRYPTION_KEY configured; passthrough mode");
@@ -329,7 +330,7 @@ async function checkNativeBinary(rootDir) {
     // present and loading fine.
     ...buildRoots.map((root) => path.join(root, "prebuilds", prebuildName)),
   ];
-  const binaryPath = candidates.find((candidate) => fs.existsSync(candidate));
+  const binaryPath = candidates.find((candidate) => fsNative.existsSync(candidate));
   if (!binaryPath) {
     return warn("Native binary", "better-sqlite3 native binary was not found", { candidates });
   }
