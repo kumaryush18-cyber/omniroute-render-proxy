@@ -65,6 +65,7 @@ export async function POST(request: Request) {
   const tokenPath = getAgyTokenFilePath();
   let rawJson: unknown;
   try {
+    /* turbopackIgnore: true */
     const content = await fs.readFile(tokenPath, "utf8");
     rawJson = JSON.parse(content);
   } catch (error) {
