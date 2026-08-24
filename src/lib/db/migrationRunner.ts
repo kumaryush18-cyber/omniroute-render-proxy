@@ -240,6 +240,7 @@ function getMigrationFiles(): Array<{ version: string; name: string; path: strin
       return {
         version: match[1],
         name: match[2],
+        /* turbopackIgnore: true */
         path: path.join(MIGRATIONS_DIR, filename),
       };
     })
@@ -627,6 +628,7 @@ function applyCompressionReceiptsMigration(db: SqliteAdapter): void {
 }
 
 function applyCompressionCombosMigration(db: SqliteAdapter, migrationPath: string): void {
+  /* turbopackIgnore: true */
   const sql = fs.readFileSync(migrationPath, "utf-8");
   db.exec(sql);
   ensureColumn(
@@ -1105,6 +1107,7 @@ export function runMigrations(db: SqliteAdapter, options?: { isNewDb?: boolean }
       } else if (migration.version === "042") {
         applyCompressionCombosMigration(db, migration.path);
       } else {
+        /* turbopackIgnore: true */
         const sql = fs.readFileSync(migration.path, "utf-8");
         db.exec(sql);
       }
