@@ -24,6 +24,7 @@
  */
 import * as fsNative from "node:fs";
 
+
 import { spawn } from "node:child_process";
 import path from "node:path";
 import os from "node:os";
@@ -244,7 +245,7 @@ export function resolveAuggieBin(): string {
   if (isWin) {
     const localAppData = process.env.LOCALAPPDATA || path.join(os.homedir(), "AppData", "Local");
     const winPath = path.join(localAppData, "auggie", "bin", "auggie.exe");
-    if (fsNative.fsNative.existsSync(winPath)) return winPath;
+    if (fsNative.existsSync(winPath)) return winPath;
   }
 
   // 3. Linux/macOS installer paths
@@ -253,7 +254,7 @@ export function resolveAuggieBin(): string {
     path.join(home, ".local", "share", "auggie", "bin", "auggie"),
     path.join(home, ".auggie", "bin", "auggie"),
   ]) {
-    if (fsNative.fsNative.existsSync(candidate)) return candidate;
+    if (fsNative.existsSync(candidate)) return candidate;
   }
 
   // Fallback — rely on PATH

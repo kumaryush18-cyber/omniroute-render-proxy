@@ -1,3 +1,4 @@
+import * as fsNative from "node:fs";
 /**
  * omniroute setup-crush — configure Crush (charmbracelet/crush) for OmniRoute.
  *
@@ -7,19 +8,13 @@
  * secret stays out of the file. Remote-aware; curated catalog models.
  */
 
-import * as fsNative from "node:fs";
-// import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import * as fsNative from "node:fs";
-// import { join } from "node:path";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import os from "node:os";
-import * as fsNative from "node:fs";
-// import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
-import * as fsNative from "node:fs";
-// import { resolveActiveContext } from "../contexts.mjs";
-import * as fsNative from "node:fs";
-// import { categoriseModel } from "./setup-codex.mjs";
-import * as fsNative from "node:fs";
-// import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
+import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
+import { resolveActiveContext } from "../contexts.mjs";
+import { categoriseModel } from "./setup-codex.mjs";
+import { guardHostConfigTarget } from "../utils/config-home-guard.mjs";
 
 const API_KEY_REF = "$OMNIROUTE_API_KEY";
 

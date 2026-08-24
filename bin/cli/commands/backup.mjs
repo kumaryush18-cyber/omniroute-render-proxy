@@ -1,5 +1,5 @@
 import * as fsNative from "node:fs";
-// import {
+import {
   copyFileSync,
   createReadStream,
   createWriteStream,
@@ -11,24 +11,15 @@ import * as fsNative from "node:fs";
   unlinkSync,
   writeFileSync,
 } from "node:fs";
-import * as fsNative from "node:fs";
-// import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
-import * as fsNative from "node:fs";
-// import { dirname, join, extname, basename } from "node:path";
-import * as fsNative from "node:fs";
-// import { Readable } from "node:stream";
-import * as fsNative from "node:fs";
-// import { pipeline } from "node:stream/promises";
-import * as fsNative from "node:fs";
-// import { resolveDataDir } from "../data-dir.mjs";
-import * as fsNative from "node:fs";
-// import { getBaseUrl, isServerUp } from "../api.mjs";
-import * as fsNative from "node:fs";
-// import { t } from "../i18n.mjs";
-import * as fsNative from "node:fs";
-// import { backupSqliteFile } from "../sqlite.mjs";
-import * as fsNative from "node:fs";
-// import { CLI_TOKEN_HEADER, getCliToken } from "../utils/cliToken.mjs";
+import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
+import { dirname, join, extname, basename } from "node:path";
+import { Readable } from "node:stream";
+import { pipeline } from "node:stream/promises";
+import { resolveDataDir } from "../data-dir.mjs";
+import { getBaseUrl, isServerUp } from "../api.mjs";
+import { t } from "../i18n.mjs";
+import { backupSqliteFile } from "../sqlite.mjs";
+import { CLI_TOKEN_HEADER, getCliToken } from "../utils/cliToken.mjs";
 
 function getBackupDir() {
   return join(resolveDataDir(), "backups");

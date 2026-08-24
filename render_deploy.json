@@ -1,0 +1,22 @@
+{
+  "type": "web_service",
+  "name": "omniroute-proxy",
+  "ownerId": "tea-d3a57lm3jp1c73cousg0",
+  "repo": "https://github.com/kumaryush18-cyber/omniroute-render-proxy",
+  "autoDeploy": "yes",
+  "branch": "main",
+  "serviceDetails": {
+    "plan": "free",
+    "runtime": "docker",
+    "envSpecificDetails": {
+      "dockerContext": ".",
+      "dockerfilePath": "./Dockerfile"
+    },
+    "envVars": [
+      {
+        "key": "PORT",
+        "value": "10000"
+      }
+    ]
+  }
+}

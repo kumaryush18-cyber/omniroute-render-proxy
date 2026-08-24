@@ -1,9 +1,7 @@
 import * as fsNative from "node:fs";
-// import { spawn, spawnSync, type ChildProcess } from "node:child_process";
-import * as fsNative from "node:fs";
-// import { createHash } from "node:crypto";
-import * as fsNative from "node:fs";
-// import {
+import { spawn, spawnSync, type ChildProcess } from "node:child_process";
+import { createHash } from "node:crypto";
+import {
   chmodSync,
   closeSync,
   existsSync,
@@ -13,14 +11,11 @@ import * as fsNative from "node:fs";
   rmSync,
   writeFileSync,
 } from "node:fs";
-import * as fsNative from "node:fs";
-// import { basename, join } from "node:path";
+import { basename, join } from "node:path";
 
-import * as fsNative from "node:fs";
-// import { unzipSync } from "fflate";
+import { unzipSync } from "fflate";
 
-import * as fsNative from "node:fs";
-// import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";
+import { atomicWriteFile, getConfigDir } from "../../vendor/codex-chatgpt-web/config.ts";
 
 export const CHATGPT_WEB_CODEX_TUNNEL_VERSION = "0.0.10";
 const RELEASE_BASE = `https://github.com/openai/tunnel-client/releases/download/v${CHATGPT_WEB_CODEX_TUNNEL_VERSION}`;
