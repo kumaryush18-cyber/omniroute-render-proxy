@@ -1,7 +1,8 @@
 import { spawn } from "node:child_process";
 import path from "node:path";
 import os from "node:os";
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import { randomUUID } from "node:crypto";
 import { BaseExecutor, type ExecuteInput } from "./base.ts";
 import { DEVIN_MODEL_CATALOG } from "../config/providers/registry/devin/catalog.ts";
@@ -88,7 +89,7 @@ function resolveDevinBin(): string {
   if (process.platform === "win32") {
     const localAppData = process.env.LOCALAPPDATA || path.join(os.homedir(), "AppData", "Local");
     const winPath = path.join(localAppData, "devin", "cli", "bin", "devin.exe");
-    if (fs.existsSync(winPath)) return winPath;
+    if (fsNative.existsSync(winPath)) return winPath;
     return "devin.exe";
   }
 
@@ -96,7 +97,7 @@ function resolveDevinBin(): string {
     path.join(os.homedir(), ".local", "share", "devin", "bin", "devin"),
     path.join(os.homedir(), ".devin", "bin", "devin"),
   ]) {
-    if (fs.existsSync(candidate)) return candidate;
+    if (fsNative.existsSync(candidate)) return candidate;
   }
   return "devin";
 }

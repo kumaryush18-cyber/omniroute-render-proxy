@@ -26,7 +26,8 @@
 import { spawn } from "node:child_process";
 import path from "node:path";
 import os from "node:os";
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import { BaseExecutor, type ExecuteInput, type ProviderCredentials } from "./base.ts";
 import { buildErrorBody, errorResponse, sanitizeErrorMessage } from "../utils/error.ts";
 import { auggieProvider } from "../config/providers/registry/auggie/index.ts";
@@ -243,7 +244,7 @@ export function resolveAuggieBin(): string {
   if (isWin) {
     const localAppData = process.env.LOCALAPPDATA || path.join(os.homedir(), "AppData", "Local");
     const winPath = path.join(localAppData, "auggie", "bin", "auggie.exe");
-    if (fs.existsSync(winPath)) return winPath;
+    if (fsNative.existsSync(winPath)) return winPath;
   }
 
   // 3. Linux/macOS installer paths
@@ -252,7 +253,7 @@ export function resolveAuggieBin(): string {
     path.join(home, ".local", "share", "auggie", "bin", "auggie"),
     path.join(home, ".auggie", "bin", "auggie"),
   ]) {
-    if (fs.existsSync(candidate)) return candidate;
+    if (fsNative.existsSync(candidate)) return candidate;
   }
 
   // Fallback — rely on PATH

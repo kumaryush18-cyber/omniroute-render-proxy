@@ -1,6 +1,7 @@
 import { spawn, type ChildProcess } from "child_process";
 import path from "path";
-import fs from "fs";
+import * as fsNative from "fs";
+const fs = fsNative.promises;
 import { resolveMitmDataDir } from "./dataDir.ts";
 import {
   removeDNSEntry,
@@ -142,8 +143,8 @@ const CA_PATH_FILE = path.join(resolveMitmDataDir(), "mitm", "upstream-ca.path")
 /** Read the persisted upstream CA path written by the POST upstream-ca route handler. */
 function readStoredUpstreamCaPath(): string | null {
   try {
-    if (!fs.existsSync(CA_PATH_FILE)) return null;
-    const raw = fs.readFileSync(CA_PATH_FILE, "utf8").trim();
+    if (!fsNative.existsSync(CA_PATH_FILE)) return null;
+    const raw = fsNative.readFileSync(CA_PATH_FILE, "utf8").trim();
     return raw || null;
   } catch {
     return null;
@@ -160,7 +161,7 @@ function readStoredUpstreamCaPath(): string | null {
 export function writeTargetsJson(targets: MitmTarget[] = ALL_TARGETS): void {
   const dir = path.join(resolveMitmDataDir(), "mitm");
   try {
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    if (!fsNative.existsSync(dir)) fsNative.mkdirSync(dir, { recursive: true });
   } catch {
     // mkdir failures are non-fatal; the write below will report the real error.
   }
@@ -175,7 +176,7 @@ export function writeTargetsJson(targets: MitmTarget[] = ALL_TARGETS): void {
       viability: t.viability ?? "supported",
     })),
   };
-  fs.writeFileSync(TARGETS_JSON_FILE, JSON.stringify(payload, null, 2));
+  fsNative.writeFileSync(TARGETS_JSON_FILE, JSON.stringify(payload, null, 2));
 }
 
 /**
@@ -191,7 +192,7 @@ export function writeTargetsJson(targets: MitmTarget[] = ALL_TARGETS): void {
 export function writeBypassJson(userPatterns?: string[]): void {
   const dir = path.join(resolveMitmDataDir(), "mitm");
   try {
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    if (!fsNative.existsSync(dir)) fsNative.mkdirSync(dir, { recursive: true });
   } catch {
     // mkdir failures are non-fatal; the write below will report the real error.
   }
@@ -204,7 +205,7 @@ export function writeBypassJson(userPatterns?: string[]): void {
     generatedAt: new Date().toISOString(),
     patterns,
   };
-  fs.writeFileSync(BYPASS_JSON_FILE, JSON.stringify(payload, null, 2));
+  fsNative.writeFileSync(BYPASS_JSON_FILE, JSON.stringify(payload, null, 2));
 }
 
 export interface AgentStatus {
@@ -234,11 +235,11 @@ const urlPath =
     ? decodeURIComponent(MITM_SERVER_URL.pathname.slice(1))
     : decodeURIComponent(MITM_SERVER_URL.pathname);
 
-// Lazy-resolve to avoid module-level fs.existsSync + process.cwd() at module scope,
+// Lazy-resolve to avoid module-level fsNative.existsSync + process.cwd() at module scope,
 // which causes Turbopack's NFT tracer to follow the path into the entire src/ tree.
 function resolveMitmServerPath(): string {
   const cwdPath = path.join(/* turbopackIgnore: true */ process.cwd(), "src", "mitm", "server.cjs");
-  return fs.existsSync(cwdPath) ? cwdPath : urlPath;
+  return fsNative.existsSync(cwdPath) ? cwdPath : urlPath;
 }
 
 // Check if a PID is alive
@@ -266,7 +267,7 @@ export async function repairMitm(sudoPassword: string): Promise<{ repaired: stri
 
   // Stale PID file.
   try {
-    if (fs.existsSync(PID_FILE)) fs.unlinkSync(PID_FILE);
+    if (fsNative.existsSync(PID_FILE)) fsNative.unlinkSync(PID_FILE);
   } catch {
     // ignore
   }
@@ -384,8 +385,8 @@ export async function getMitmStatus(agentId?: string): Promise<{
 
   if (!running) {
     try {
-      if (fs.existsSync(PID_FILE)) {
-        const savedPid = parseInt(fs.readFileSync(PID_FILE, "utf-8").trim(), 10);
+      if (fsNative.existsSync(PID_FILE)) {
+        const savedPid = parseInt(fsNative.readFileSync(PID_FILE, "utf-8").trim(), 10);
         if (savedPid && isProcessAlive(savedPid)) {
           running = true;
           pid = savedPid;
@@ -393,7 +394,7 @@ export async function getMitmStatus(agentId?: string): Promise<{
           // Stale PID file: the server died without clean teardown. We cannot
           // run privileged cleanup here (no sudo password in a status read),
           // so flag it for the dashboard to offer a one-click Repair. (Gap 7.)
-          fs.unlinkSync(PID_FILE);
+          fsNative.unlinkSync(PID_FILE);
           _orphanedStateDetected = true;
           log.warn("Stale MITM PID file found — system state may be orphaned (offer Repair).");
         }
@@ -421,7 +422,7 @@ export async function getMitmStatus(agentId?: string): Promise<{
 
   // Check cert
   const certDir = path.join(resolveMitmDataDir(), "mitm");
-  const certExists = fs.existsSync(path.join(certDir, "server.crt"));
+  const certExists = fsNative.existsSync(path.join(certDir, "server.crt"));
 
   return {
     running,
@@ -520,7 +521,7 @@ async function startMitmInternal(
   let certPath: string;
   if (migrationDecision === "use-legacy-leaf") {
     certPath = path.join(resolveMitmDataDir(), "mitm", "server.crt");
-    if (!fs.existsSync(certPath)) {
+    if (!fsNative.existsSync(certPath)) {
       log.info("Generating SSL certificate...");
       try {
         await generateCert();
@@ -634,7 +635,7 @@ async function startMitmInternal(
   // Save PID to file — best-effort, must not orphan spawned child process
   if (serverPid !== null) {
     try {
-      fs.writeFileSync(PID_FILE, String(serverPid));
+      fsNative.writeFileSync(PID_FILE, String(serverPid));
     } catch (err) {
       log.error({ err, pid: serverPid }, "Failed to write MITM PID file (continuing)");
     }
@@ -662,7 +663,7 @@ async function startMitmInternal(
 
     // Remove PID file
     try {
-      fs.unlinkSync(PID_FILE);
+      fsNative.unlinkSync(PID_FILE);
     } catch (error) {
       // Ignore
     }
@@ -734,8 +735,8 @@ async function killMitmServerProcessOnStop(): Promise<void> {
 
   // Fallback: kill by PID file
   try {
-    if (fs.existsSync(PID_FILE)) {
-      const savedPid = parseInt(fs.readFileSync(PID_FILE, "utf-8").trim(), 10);
+    if (fsNative.existsSync(PID_FILE)) {
+      const savedPid = parseInt(fsNative.readFileSync(PID_FILE, "utf-8").trim(), 10);
       if (savedPid && isProcessAlive(savedPid)) {
         log.info({ pid: savedPid }, "Killing MITM server by PID...");
         process.kill(savedPid, "SIGTERM");
@@ -794,7 +795,7 @@ export async function stopMitm(
   // 3. Clean up
   clearCachedPassword(); // Clear password from memory when proxy stops
   try {
-    fs.unlinkSync(PID_FILE);
+    fsNative.unlinkSync(PID_FILE);
   } catch (error) {
     // Ignore
   }

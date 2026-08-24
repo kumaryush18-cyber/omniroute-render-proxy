@@ -13,7 +13,8 @@
  * when the process is root, so on the VPS no password is needed. Every effectful
  * seam is injectable so the command sequence is unit-testable without root.
  */
-import fs from "node:fs";
+import * as fsNative from "node:fs";
+const fs = fsNative.promises;
 import os from "node:os";
 import path from "node:path";
 import { execFileWithPassword } from "../systemCommands.ts";
@@ -48,17 +49,17 @@ export interface CaTrustDeps {
 
 function detectCertConfig(): { dir: string; cmd: string } {
   for (const c of LINUX_CERT_PATHS) {
-    if (fs.existsSync(c.dir)) return c;
+    if (fsNative.existsSync(c.dir)) return c;
   }
   return LINUX_CERT_PATHS[0];
 }
 
 const realDeps: CaTrustDeps = {
   run: execFileWithPassword,
-  writeFile: (filePath, data) => fs.writeFileSync(filePath, data, { mode: 0o644 }),
+  writeFile: (filePath, data) => fsNative.writeFileSync(filePath, data, { mode: 0o644 }),
   rmFile: (filePath) => {
     try {
-      fs.unlinkSync(filePath);
+      fsNative.unlinkSync(filePath);
     } catch {
       // best-effort cleanup
     }
